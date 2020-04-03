@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.google.cloud</groupId>
-  <artifactId>documentai-snippets</artifactId>
+  <artifactId>documentai-install-without-bom</artifactId>
   <packaging>jar</packaging>
-  <name>Google Document AI Snippets</name>
+  <name>Google Document AI Install Without Bom</name>
   <url>https://github.com/googleapis/java-document-ai</url>
 
   <!--
@@ -14,7 +14,7 @@
   <parent>
     <groupId>com.google.cloud.samples</groupId>
     <artifactId>shared-configuration</artifactId>
-    <version>1.0.14</version>
+    <version>1.0.13</version>
   </parent>
 
   <properties>
@@ -24,25 +24,20 @@
   </properties>
 
 
-  <!-- [START documentai_install_with_bom] -->
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>com.google.cloud</groupId>
-        <artifactId>libraries-bom</artifactId>
-        <version>4.4.0</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
   <dependencies>
+    <!-- [START documentai_install_without_bom] -->
     <dependency>
       <groupId>com.google.cloud</groupId>
       <artifactId>google-cloud-document-ai</artifactId>
+      <version>0.1.0</version>
     </dependency>
-    <!-- [END documentai_install_with_bom] -->
+
+    <dependency>
+      <groupId>com.google.cloud</groupId>
+      <artifactId>google-cloud-storage</artifactId>
+      <version>1.103.1</version>
+    </dependency>
+    <!-- [END documentai_install_without_bom] -->
 
     <dependency>
       <groupId>junit</groupId>
@@ -57,4 +52,26 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <!-- compile and run all snippet tests -->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.6.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>java</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <mainClass>com.examples.documentai.ParseForm</mainClass>
+          <cleanupDaemonThreads>false</cleanupDaemonThreads>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>

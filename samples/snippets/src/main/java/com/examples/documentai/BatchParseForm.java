@@ -66,17 +66,11 @@ public class BatchParseForm {
       String outputGcsPrefix,
       String inputGcsUri)
       throws IOException, InterruptedException, ExecutionException, TimeoutException {
-    // TODO: Delete this option after API default endpoint is fixed.
-    DocumentUnderstandingServiceSettings settings =
-        DocumentUnderstandingServiceSettings.newBuilder()
-            .setEndpoint("us-documentai.googleapis.com:443")
-            .build();
-
     // Initialize client that will be used to send requests. This client only needs to be created
     // once, and can be reused for multiple requests. After completing all of your requests, call
     // the "close" method on the client to safely clean up any remaining background resources.
     try (DocumentUnderstandingServiceClient client =
-        DocumentUnderstandingServiceClient.create(settings)) {
+        DocumentUnderstandingServiceClient.create()) {
 
       // Configure the request for processing the PDF
       String parent = String.format("projects/%s/locations/%s", projectId, location);

@@ -77,7 +77,7 @@ public class BatchParseTableTest {
   @Test
   public void testBatchParseTable()
       throws InterruptedException, ExecutionException, TimeoutException, IOException {
-    // retrieve a job.
+    // parse the GCS invoice as a table.
     BatchParseTable.parseTableGcs(
         PROJECT_ID, "us-west2", OUTPUT_BUCKET_NAME, OUTPUT_PREFIX, INPUT_URI);
     String got = bout.toString();

@@ -41,6 +41,8 @@
     <dependency>
       <groupId>com.google.cloud</groupId>
       <artifactId>google-cloud-document-ai</artifactId>
+      <!-- TODO: Delete after the release 0.1.1-->
+      <version>0.1.1-SNAPSHOT</version>
     </dependency>
     <!-- [END documentai_install_with_bom] -->
 

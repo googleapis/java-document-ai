@@ -16,22 +16,21 @@
 
 package com.examples.documentai;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import static com.google.common.truth.Truth.assertThat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeoutException;
-
-import static com.google.common.truth.Truth.assertThat;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 public class ParseWithModelTest {
   private static final String PROJECT_ID = System.getenv("GOOGLE_CLOUD_PROJECT");
   private static final String INPUT_URI = "gs://cloud-samples-data/documentai/invoice.pdf";
-
+  // TODO: train custom model for DocumentAI
+  private static final String AUTO_ML_MODEL_ID =
+      "projects/779844219229/locations/us-central1/models/TCN6871084728972835631";
   private ByteArrayOutputStream bout;
   private PrintStream out;
 
@@ -43,16 +42,12 @@ public class ParseWithModelTest {
   }
 
   @Test
-  public void testParseForm()
-      throws InterruptedException, ExecutionException, TimeoutException, IOException {
-    // retrieve a job.
-    ParseForm.parseForm(
-        PROJECT_ID, "us-west2", INPUT_URI);
+  public void testParseWithModel() throws IOException {
+    // parse a PDF using AutoML model.
+    ParseWithModel.parseWithModel(PROJECT_ID, "us-west2", AUTO_ML_MODEL_ID, INPUT_URI);
     String got = bout.toString();
 
-    assertThat(got).contains("Fetched file");
-    assertThat(got).contains("ADDRESS:");
-    assertThat(got).contains("BALANCE DUE");
+    assertThat(got).contains("Label");
   }
 
   @After

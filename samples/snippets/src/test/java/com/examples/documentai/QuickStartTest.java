@@ -16,17 +16,14 @@
 
 package com.examples.documentai;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import static com.google.common.truth.Truth.assertThat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeoutException;
-
-import static com.google.common.truth.Truth.assertThat;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 public class QuickStartTest {
   private static final String PROJECT_ID = System.getenv("GOOGLE_CLOUD_PROJECT");
@@ -43,16 +40,12 @@ public class QuickStartTest {
   }
 
   @Test
-  public void testParseForm()
-      throws InterruptedException, ExecutionException, TimeoutException, IOException {
-    // retrieve a job.
-    ParseForm.parseForm(
-        PROJECT_ID, "us-west2", INPUT_URI);
+  public void testQuickStart() throws IOException {
+    // parse a PDF document.
+    QuickStart.quickStart(PROJECT_ID, "us-west2", INPUT_URI);
     String got = bout.toString();
 
-    assertThat(got).contains("Fetched file");
-    assertThat(got).contains("ADDRESS:");
-    assertThat(got).contains("BALANCE DUE");
+    assertThat(got).contains("Entity");
   }
 
   @After

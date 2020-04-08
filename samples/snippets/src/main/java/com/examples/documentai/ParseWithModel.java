@@ -31,7 +31,7 @@ public class ParseWithModel {
   public static void parseWithModel() throws IOException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
-    String location = "your-region";
+    String location = "your-region";    // available regions https://cloud.google.com/compute/docs/regions-zones
     String autoMlModel = "your-full-resource-model-name";
     String gcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
     parseWithModel(projectId, location, autoMlModel, gcsUri);

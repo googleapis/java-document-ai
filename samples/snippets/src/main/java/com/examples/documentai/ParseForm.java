@@ -32,7 +32,7 @@ public class ParseForm {
   public static void parseForm() throws IOException, ExecutionException, InterruptedException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
-    String location = "your-region";
+    String location = "your-region";    // available regions https://cloud.google.com/compute/docs/regions-zones
     String inputGcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
     parseForm(projectId, location, inputGcsUri);
   }
@@ -44,10 +44,8 @@ public class ParseForm {
     // the "close" method on the client to safely clean up any remaining background resources.
     try (DocumentUnderstandingServiceClient client = DocumentUnderstandingServiceClient.create()) {
       // Configure the request for processing the PDF
-      // todo: find correct object builder
       String parent = String.format("projects/%s/locations/%s", projectId, location);
 
-      // todo: make it compact
       KeyValuePairHint keyValuePairHint =
           KeyValuePairHint.newBuilder().setKey("Phone").addValueTypes("PHONE_NUMBER").build();
       KeyValuePairHint keyValuePairHint2 =

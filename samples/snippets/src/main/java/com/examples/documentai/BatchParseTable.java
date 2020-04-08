@@ -54,7 +54,7 @@ public class BatchParseTable {
       throws IOException, InterruptedException, ExecutionException, TimeoutException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
-    String location = "your-region";
+    String location = "your-region";    // available regions https://cloud.google.com/compute/docs/regions-zones
     String outputGcsBucketName = "your-gcs-bucket-name";
     String outputGcsPrefix = "gs://your-gcs-bucket/PREFIX/";
     String inputGcsUri = "gs://your-gcs-bucket/path/to/input/file.json";

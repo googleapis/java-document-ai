@@ -25,7 +25,6 @@ import com.google.cloud.documentai.v1beta2.BatchProcessDocumentsResponse;
 import com.google.cloud.documentai.v1beta2.BoundingPoly;
 import com.google.cloud.documentai.v1beta2.Document;
 import com.google.cloud.documentai.v1beta2.DocumentUnderstandingServiceClient;
-import com.google.cloud.documentai.v1beta2.DocumentUnderstandingServiceSettings;
 import com.google.cloud.documentai.v1beta2.GcsDestination;
 import com.google.cloud.documentai.v1beta2.GcsSource;
 import com.google.cloud.documentai.v1beta2.InputConfig;

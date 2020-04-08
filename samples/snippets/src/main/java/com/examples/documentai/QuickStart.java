@@ -27,15 +27,15 @@ import java.io.IOException;
 
 public class QuickStart {
 
-  public static void parseWithModel() throws IOException {
+  public static void quickStart() throws IOException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
     String location = "your-region";
     String inputGcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
-    parseWithModel(projectId, location, inputGcsUri);
+    quickStart(projectId, location, inputGcsUri);
   }
 
-  public static void parseWithModel(String projectId, String location, String inputGcsUri)
+  public static void quickStart(String projectId, String location, String inputGcsUri)
       throws IOException {
     // Initialize client that will be used to send requests. This client only needs to be created
     // once, and can be reused for multiple requests. After completing all of your requests, call
@@ -43,7 +43,6 @@ public class QuickStart {
     try (DocumentUnderstandingServiceClient client = DocumentUnderstandingServiceClient.create()) {
       // Configure the request for processing the PDF
       // todo: find correct object builder
-
       String parent = String.format("projects/%s/locations/%s", projectId, location);
 
       System.out.println(parent);

@@ -16,7 +16,7 @@
 
 package com.examples.documentai;
 
-// [START document_quickstart]
+// [START documentai_parse_with_model]
 
 import com.google.cloud.documentai.v1beta2.AutoMlParams;
 import com.google.cloud.documentai.v1beta2.Document;
@@ -31,7 +31,7 @@ public class ParseWithModel {
   public static void parseWithModel() throws IOException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
-    String location = "your-region";    // available regions https://cloud.google.com/compute/docs/regions-zones
+    String location = "us-central1";
     String autoMlModel = "your-full-resource-model-name";
     String gcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
     parseWithModel(projectId, location, autoMlModel, gcsUri);
@@ -52,9 +52,12 @@ public class ParseWithModel {
       GcsSource uri = GcsSource.newBuilder().setUri(gcsUri).build();
 
       InputConfig config =
-          InputConfig.newBuilder().setGcsSource(uri).setMimeType("application/pdf").build();
+          InputConfig.newBuilder().setGcsSource(uri)
+                  // mime_type can be application/pdf, image/tiff,
+                  // and image/gif, or application/json
+                  .setMimeType("application/pdf").build();
 
-      ProcessDocumentRequest req =
+      ProcessDocumentRequest request =
           ProcessDocumentRequest.newBuilder()
               .setParent(parent)
               .setAutomlParams(params)
@@ -62,15 +65,14 @@ public class ParseWithModel {
               .build();
 
       // Recognizes text entities in the PDF document
-      Document res = client.processDocument(req);
+      Document response = client.processDocument(request);
 
       // Process the output
-      Document.Page page1 = res.getPages(0);
-      for (Document.Label label : res.getLabelsList()) {
+      for (Document.Label label : response.getLabelsList()) {
         System.out.printf("Label detected: %s\n", label.getName());
         System.out.printf("Confidence:  %s\n", label.getConfidence());
       }
     }
   }
 }
-// [END document_quickstart]
+// [END documentai_parse_with_model]

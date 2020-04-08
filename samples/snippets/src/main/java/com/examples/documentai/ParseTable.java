@@ -16,7 +16,7 @@
 
 package com.examples.documentai;
 
-// [START document_quickstart]
+// [START documentai_parse_table]
 
 import com.google.cloud.documentai.v1beta2.BoundingPoly;
 import com.google.cloud.documentai.v1beta2.Document;
@@ -34,7 +34,7 @@ public class ParseTable {
   public static void parseTable() throws IOException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
-    String location = "your-region";    // available regions https://cloud.google.com/compute/docs/regions-zones
+    String location = "us-central1";
     String inputGcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
     parseTable(projectId, location, inputGcsUri);
   }
@@ -68,9 +68,12 @@ public class ParseTable {
       GcsSource uri = GcsSource.newBuilder().setUri(inputGcsUri).build();
 
       InputConfig config =
-          InputConfig.newBuilder().setGcsSource(uri).setMimeType("application/pdf").build();
+          InputConfig.newBuilder().setGcsSource(uri)
+                  // mime_type can be application/pdf, image/tiff,
+                  // and image/gif, or application/json
+                  .setMimeType("application/pdf").build();
 
-      ProcessDocumentRequest req =
+      ProcessDocumentRequest request =
           ProcessDocumentRequest.newBuilder()
               .setParent(parent)
               .setTableExtractionParams(params)
@@ -78,13 +81,13 @@ public class ParseTable {
               .build();
 
       // Recognizes text entities in the PDF document
-      Document res = client.processDocument(req);
+      Document response = client.processDocument(request);
 
       // Get all of the document text as one big string
-      String text = res.getText();
+      String text = response.getText();
 
       // Get the first table in the document
-      Document.Page page1 = res.getPages(0);
+      Document.Page page1 = response.getPages(0);
       Document.Page.Table table = page1.getTables(0);
       Document.Page.Table.TableRow headerRow = table.getHeaderRows(0);
 
@@ -94,17 +97,15 @@ public class ParseTable {
         if (tableCell.getLayout().getTextAnchor().getTextSegmentsList() != null) {
           // Extract shards from the text field
           // First shard in document doesn't have startIndex property
-          Document.TextAnchor textAnchor = tableCell.getLayout().getTextAnchor();
-          System.out.printf("\t%s", getText(textAnchor, text));
+          System.out.printf("\t%s", getText(tableCell.getLayout(), text));
         }
       }
     }
   }
 
   // Extract shards from the text field
-  private static String getText(Document.TextAnchor textAnchor, String text) {
-
-    // Text anchor has no text segments if cell is empty
+  private static String getText(Document.Page.Layout layout, String text) {
+    Document.TextAnchor textAnchor = layout.getTextAnchor();
     if (textAnchor.getTextSegmentsList().size() > 0) {
       int startIdx = (int) textAnchor.getTextSegments(0).getStartIndex();
       int endIdx = (int) textAnchor.getTextSegments(0).getEndIndex();
@@ -113,4 +114,4 @@ public class ParseTable {
     return "[NO TEXT]";
   }
 }
-// [END document_quickstart]
+// [END documentai_parse_table]

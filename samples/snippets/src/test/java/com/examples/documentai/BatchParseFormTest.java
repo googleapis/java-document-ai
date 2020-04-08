@@ -78,7 +78,7 @@ public class BatchParseFormTest {
   public void testBatchParseForm()
       throws InterruptedException, ExecutionException, TimeoutException, IOException {
     // parse the GCS invoice as a form.
-    BatchParseForm.parseFormGcs(
+    BatchParseForm.batchParseFormGcs(
         PROJECT_ID, "us-west2", OUTPUT_BUCKET_NAME, OUTPUT_PREFIX, INPUT_URI);
     String got = bout.toString();
 

@@ -27,17 +27,11 @@ import com.google.cloud.documentai.v1beta2.ProcessDocumentRequest;
 import java.io.IOException;
 
 public class SetEndPoint {
-  public static void main(String[] args) throws IOException {
-    setEndpoint(
-        "java-docs-samples-testing",
-        "us-central1",
-        "gs://cloud-samples-data/documentai/invoice.pdf");
-  }
 
   public static void setEndpoint() throws IOException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
-    String location = "your-region";    // available regions https://cloud.google.com/compute/docs/regions-zones
+    String location = "us-central1";
     String inputGcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
     setEndpoint(projectId, location, inputGcsUri);
   }
@@ -60,29 +54,32 @@ public class SetEndPoint {
       GcsSource uri = GcsSource.newBuilder().setUri(inputGcsUri).build();
 
       InputConfig config =
-          InputConfig.newBuilder().setGcsSource(uri).setMimeType("application/pdf").build();
+          InputConfig.newBuilder().setGcsSource(uri)
+                  // mime_type can be application/pdf, image/tiff,
+                  // and image/gif, or application/json
+                  .setMimeType("application/pdf").build();
 
-      ProcessDocumentRequest req =
+      ProcessDocumentRequest request =
           ProcessDocumentRequest.newBuilder().setParent(parent).setInputConfig(config).build();
 
       // Recognizes text entities in the PDF document
-      Document res = client.processDocument(req);
+      Document response = client.processDocument(request);
 
       // Get all of the document text as one big string
-      String text = res.getText();
+      String text = response.getText();
 
       // Process the output
-      for (Document.Entity entity : res.getEntitiesList()) {
-        System.out.printf("Entity text: %s\n", getText(entity.getTextAnchor(), text));
+      for (Document.Entity entity : response.getEntitiesList()) {
+        System.out.printf("Entity text: %s\n", getText(entity, text));
         System.out.printf("Entity type: %s\n", entity.getType());
         System.out.printf("Entity mention text: %s\n", entity.getMentionText());
       }
     }
   }
 
-  private static String getText(Document.TextAnchor textAnchor, String text) {
-    int startIdx = (int) textAnchor.getTextSegments(0).getStartIndex();
-    int endIdx = (int) textAnchor.getTextSegments(0).getEndIndex();
+  private static String getText(Document.Entity entity, String text) {
+    int startIdx = (int) entity.getTextAnchor().getTextSegments(0).getStartIndex();
+    int endIdx = (int) entity.getTextAnchor().getTextSegments(0).getEndIndex();
     return text.substring(startIdx, endIdx);
   }
 }

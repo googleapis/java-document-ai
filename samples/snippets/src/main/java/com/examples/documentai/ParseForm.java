@@ -16,7 +16,7 @@
 
 package com.examples.documentai;
 
-// [START document_quickstart]
+// [START documentai_parse_form]
 
 import com.google.cloud.documentai.v1beta2.Document;
 import com.google.cloud.documentai.v1beta2.DocumentUnderstandingServiceClient;
@@ -32,7 +32,7 @@ public class ParseForm {
   public static void parseForm() throws IOException, ExecutionException, InterruptedException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
-    String location = "your-region";    // available regions https://cloud.google.com/compute/docs/regions-zones
+    String location = "us-central1";
     String inputGcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
     parseForm(projectId, location, inputGcsUri);
   }
@@ -46,6 +46,12 @@ public class ParseForm {
       // Configure the request for processing the PDF
       String parent = String.format("projects/%s/locations/%s", projectId, location);
 
+      // Improve form parsing results by providing key-value pair hints.
+      // For each key hint, key is text that is likely to appear in the
+      // document as a form field name (i.e. "DOB").
+      // Value types are optional, but can be one or more of:
+      // ADDRESS, LOCATION, ORGANIZATION, PERSON, PHONE_NUMBER, ID,
+      // NUMBER, EMAIL, PRICE, TERMS, DATE, NAME
       KeyValuePairHint keyValuePairHint =
           KeyValuePairHint.newBuilder().setKey("Phone").addValueTypes("PHONE_NUMBER").build();
       KeyValuePairHint keyValuePairHint2 =
@@ -55,6 +61,7 @@ public class ParseForm {
               .addValueTypes("NAME")
               .build();
 
+      // Setting enabled=True enables form extraction
       FormExtractionParams params =
           FormExtractionParams.newBuilder()
               .setEnabled(true)
@@ -65,9 +72,12 @@ public class ParseForm {
       GcsSource uri = GcsSource.newBuilder().setUri(inputGcsUri).build();
 
       InputConfig config =
-          InputConfig.newBuilder().setGcsSource(uri).setMimeType("application/pdf").build();
+          InputConfig.newBuilder().setGcsSource(uri)
+                  // mime_type can be application/pdf, image/tiff,
+                  // and image/gif, or application/json
+                  .setMimeType("application/pdf").build();
 
-      ProcessDocumentRequest req =
+      ProcessDocumentRequest request =
           ProcessDocumentRequest.newBuilder()
               .setParent(parent)
               .setFormExtractionParams(params)
@@ -75,27 +85,31 @@ public class ParseForm {
               .build();
 
       // Recognizes text entities in the PDF document
-      Document res = client.processDocument(req);
+      Document response = client.processDocument(request);
 
       // Get all of the document text as one big string
-      String text = res.getText();
+      String text = response.getText();
 
       // Process the output
-      Document.Page page1 = res.getPages(0);
+      Document.Page page1 = response.getPages(0);
       for (Document.Page.FormField field : page1.getFormFieldsList()) {
-        String fieldName = getText(field.getFieldName().getTextAnchor(), text);
-        String fieldValue = getText(field.getFieldValue().getTextAnchor(), text);
+        String fieldName = getText(field.getFieldName(), text);
+        String fieldValue = getText(field.getFieldValue(), text);
 
-        System.out.println("Extracted key value pair:");
+        System.out.println("Extracted form fields pair:");
         System.out.printf("\t(%s, %s))", fieldName, fieldValue);
       }
     }
   }
 
-  private static String getText(Document.TextAnchor textAnchor, String text) {
-    int startIdx = (int) textAnchor.getTextSegments(0).getStartIndex();
-    int endIdx = (int) textAnchor.getTextSegments(0).getEndIndex();
-    return text.substring(startIdx, endIdx);
+  private static String getText(Document.Page.Layout layout, String text) {
+    Document.TextAnchor textAnchor = layout.getTextAnchor();
+    if (textAnchor.getTextSegmentsList().size() > 0) {
+      int startIdx = (int) textAnchor.getTextSegments(0).getStartIndex();
+      int endIdx = (int) textAnchor.getTextSegments(0).getEndIndex();
+      return text.substring(startIdx, endIdx);
+    }
+    return "[NO TEXT]";
   }
 }
-// [END document_quickstart]
+// [END documentai_parse_form]

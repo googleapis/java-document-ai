@@ -16,7 +16,7 @@
 
 package com.examples.documentai;
 
-// [START document_parse_table]
+// [START documentai_batch_parse_table]
 
 import com.google.api.gax.longrunning.OperationFuture;
 import com.google.api.gax.paging.Page;
@@ -50,18 +50,18 @@ import java.util.concurrent.TimeoutException;
 
 public class BatchParseTable {
 
-  public static void parseTableGcs()
+  public static void batchParseTableGcs()
       throws IOException, InterruptedException, ExecutionException, TimeoutException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
-    String location = "your-region";    // available regions https://cloud.google.com/compute/docs/regions-zones
+    String location = "us-central1";
     String outputGcsBucketName = "your-gcs-bucket-name";
-    String outputGcsPrefix = "gs://your-gcs-bucket/PREFIX/";
+    String outputGcsPrefix = "PREFIX";
     String inputGcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
-    parseTableGcs(projectId, location, outputGcsBucketName, outputGcsPrefix, inputGcsUri);
+    batchParseTableGcs(projectId, location, outputGcsBucketName, outputGcsPrefix, inputGcsUri);
   }
 
-  public static void parseTableGcs(
+  public static void batchParseTableGcs(
       String projectId,
       String location,
       String outputGcsBucketName,
@@ -97,25 +97,28 @@ public class BatchParseTable {
       GcsSource inputUri = GcsSource.newBuilder().setUri(inputGcsUri).build();
 
       InputConfig config =
-          InputConfig.newBuilder().setGcsSource(inputUri).setMimeType("application/pdf").build();
+          InputConfig.newBuilder().setGcsSource(inputUri)
+                  // mime_type can be application/pdf, image/tiff,
+                  // and image/gif, or application/json
+                  .setMimeType("application/pdf").build();
 
-      ProcessDocumentRequest req =
+      GcsDestination gcsDestination = GcsDestination.newBuilder()
+              .setUri(String.format("gs://%s/%s", outputGcsBucketName, outputGcsPrefix)).build();
+
+      OutputConfig outputConfig =  OutputConfig.newBuilder()
+              .setGcsDestination(gcsDestination)
+              .setPagesPerShard(1)
+              .build();
+
+      ProcessDocumentRequest request =
           ProcessDocumentRequest.newBuilder()
               .setTableExtractionParams(params)
               .setInputConfig(config)
-              .setOutputConfig(
-                  OutputConfig.newBuilder()
-                      .setGcsDestination(
-                          GcsDestination.newBuilder()
-                              .setUri(
-                                  String.format("gs://%s/%s", outputGcsBucketName, outputGcsPrefix))
-                              .build())
-                      .setPagesPerShard(1)
-                      .build())
+              .setOutputConfig(outputConfig)
               .build();
 
       BatchProcessDocumentsRequest requests =
-          BatchProcessDocumentsRequest.newBuilder().addRequests(req).setParent(parent).build();
+          BatchProcessDocumentsRequest.newBuilder().addRequests(request).setParent(parent).build();
 
       // Batch process document using a long-running operation.
       OperationFuture<BatchProcessDocumentsResponse, OperationMetadata> future =
@@ -188,4 +191,4 @@ public class BatchParseTable {
     }
   }
 }
-// [END document_parse_table]
+// [END documentai_batch_parse_table]

@@ -16,7 +16,7 @@
 
 package com.examples.documentai;
 
-// [START document_parse_form]
+// [START documentai_batch_parse_form]
 
 import com.google.api.gax.longrunning.OperationFuture;
 import com.google.api.gax.paging.Page;
@@ -37,6 +37,7 @@ import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.Bucket;
 import com.google.cloud.storage.Storage;
 import com.google.cloud.storage.StorageOptions;
+import com.google.protobuf.ByteString;
 import com.google.protobuf.util.JsonFormat;
 import java.io.File;
 import java.io.FileReader;
@@ -47,18 +48,18 @@ import java.util.concurrent.TimeoutException;
 
 public class BatchParseForm {
 
-  public static void parseFormGcs()
+  public static void batchParseFormGcs()
       throws IOException, InterruptedException, ExecutionException, TimeoutException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
-    String location = "your-region";    // available regions https://cloud.google.com/compute/docs/regions-zones
+    String location = "us-central1";
     String outputGcsBucketName = "your-gcs-bucket-name";
-    String outputGcsPrefix = "gs://your-gcs-bucket/PREFIX/";
+    String outputGcsPrefix = "PREFIX";
     String inputGcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
-    parseFormGcs(projectId, location, outputGcsBucketName, outputGcsPrefix, inputGcsUri);
+    batchParseFormGcs(projectId, location, outputGcsBucketName, outputGcsPrefix, inputGcsUri);
   }
 
-  public static void parseFormGcs(
+  public static void batchParseFormGcs(
       String projectId,
       String location,
       String outputGcsBucketName,
@@ -74,6 +75,12 @@ public class BatchParseForm {
       // Configure the request for processing the PDF
       String parent = String.format("projects/%s/locations/%s", projectId, location);
 
+      // Improve form parsing results by providing key-value pair hints.
+      // For each key hint, key is text that is likely to appear in the
+      // document as a form field name (i.e. "DOB").
+      // Value types are optional, but can be one or more of:
+      // ADDRESS, LOCATION, ORGANIZATION, PERSON, PHONE_NUMBER, ID,
+      // NUMBER, EMAIL, PRICE, TERMS, DATE, NAME
       KeyValuePairHint keyValuePairHint =
           KeyValuePairHint.newBuilder().setKey("Phone").addValueTypes("PHONE_NUMBER").build();
 
@@ -84,6 +91,7 @@ public class BatchParseForm {
               .addValueTypes("NAME")
               .build();
 
+      // Setting enabled=True enables form extraction
       FormExtractionParams params =
           FormExtractionParams.newBuilder()
               .setEnabled(true)
@@ -94,25 +102,28 @@ public class BatchParseForm {
       GcsSource inputUri = GcsSource.newBuilder().setUri(inputGcsUri).build();
 
       InputConfig config =
-          InputConfig.newBuilder().setGcsSource(inputUri).setMimeType("application/pdf").build();
+          InputConfig.newBuilder().setGcsSource(inputUri)
+                  // mime_type can be application/pdf, image/tiff,
+                  // and image/gif, or application/json
+                  .setMimeType("application/pdf").build();
 
-      ProcessDocumentRequest req =
+      GcsDestination gcsDestination = GcsDestination.newBuilder()
+              .setUri(String.format("gs://%s/%s", outputGcsBucketName, outputGcsPrefix)).build();
+
+      OutputConfig outputConfig =  OutputConfig.newBuilder()
+              .setGcsDestination(gcsDestination)
+              .setPagesPerShard(1)
+              .build();
+
+      ProcessDocumentRequest request =
           ProcessDocumentRequest.newBuilder()
               .setFormExtractionParams(params)
               .setInputConfig(config)
-              .setOutputConfig(
-                  OutputConfig.newBuilder()
-                      .setGcsDestination(
-                          GcsDestination.newBuilder()
-                              .setUri(
-                                  String.format("gs://%s/%s", outputGcsBucketName, outputGcsPrefix))
-                              .build())
-                      .setPagesPerShard(1)
-                      .build())
+              .setOutputConfig(outputConfig)
               .build();
 
       BatchProcessDocumentsRequest requests =
-          BatchProcessDocumentsRequest.newBuilder().addRequests(req).setParent(parent).build();
+          BatchProcessDocumentsRequest.newBuilder().addRequests(request).setParent(parent).build();
 
       // Batch process document using a long-running operation.
       OperationFuture<BatchProcessDocumentsResponse, OperationMetadata> future =
@@ -148,6 +159,7 @@ public class BatchParseForm {
           FileReader reader = new FileReader(tempFile);
           Document.Builder builder = Document.newBuilder();
           JsonFormat.parser().merge(reader, builder);
+
           Document document = builder.build();
 
           // Get all of the document text as one big string.
@@ -156,10 +168,10 @@ public class BatchParseForm {
           // Process the output.
           Document.Page page1 = document.getPages(0);
           for (Document.Page.FormField field : page1.getFormFieldsList()) {
-            String fieldName = getText(field.getFieldName().getTextAnchor(), text);
-            String fieldValue = getText(field.getFieldValue().getTextAnchor(), text);
+            String fieldName = getText(field.getFieldName(), text);
+            String fieldValue = getText(field.getFieldValue(), text);
 
-            System.out.println("Extracted key value pair:");
+            System.out.println("Extracted form fields pair:");
             System.out.printf("\t(%s, %s))", fieldName, fieldValue);
           }
 
@@ -170,10 +182,14 @@ public class BatchParseForm {
     }
   }
 
-  private static String getText(Document.TextAnchor textAnchor, String text) {
-    int startIdx = (int) textAnchor.getTextSegments(0).getStartIndex();
-    int endIdx = (int) textAnchor.getTextSegments(0).getEndIndex();
-    return text.substring(startIdx, endIdx);
+  private static String getText(Document.Page.Layout layout, String text) {
+    Document.TextAnchor textAnchor = layout.getTextAnchor();
+    if (textAnchor.getTextSegmentsList().size() > 0) {
+      int startIdx = (int) textAnchor.getTextSegments(0).getStartIndex();
+      int endIdx = (int) textAnchor.getTextSegments(0).getEndIndex();
+      return text.substring(startIdx, endIdx);
+    }
+    return "[NO TEXT]";
   }
 }
-// [END document_parse_form]
+// [END documentai_batch_parse_form]

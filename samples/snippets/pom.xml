@@ -49,6 +49,7 @@
       <artifactId>google-cloud-storage</artifactId>
       <version>1.103.1</version>
     </dependency>
+    <!-- [END documentai_install_with_bom] -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

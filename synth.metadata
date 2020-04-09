@@ -1,6 +1,13 @@
 {
-  "updateTime": "2020-04-06T23:26:05.388158Z",
+  "updateTime": "2020-04-09T00:26:31.025793Z",
   "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/java-document-ai.git",
+        "sha": "3436a0e4e4681d5aff9f843eae5b10aba919d737"
+      }
+    },
     {
       "git": {
         "name": "googleapis",

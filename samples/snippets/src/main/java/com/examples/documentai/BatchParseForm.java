@@ -98,10 +98,10 @@ public class BatchParseForm {
 
       GcsSource inputUri = GcsSource.newBuilder().setUri(inputGcsUri).build();
 
+      // mime_type can be application/pdf, image/tiff,
+      // and image/gif, or application/json
       InputConfig config =
           InputConfig.newBuilder().setGcsSource(inputUri)
-                  // mime_type can be application/pdf, image/tiff,
-                  // and image/gif, or application/json
                   .setMimeType("application/pdf").build();
 
       GcsDestination gcsDestination = GcsDestination.newBuilder()

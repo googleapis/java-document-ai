@@ -51,16 +51,14 @@ public class BatchParseForm {
       throws IOException, InterruptedException, ExecutionException, TimeoutException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
-    String location = "us-central1";
     String outputGcsBucketName = "your-gcs-bucket-name";
     String outputGcsPrefix = "PREFIX";
     String inputGcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
-    batchParseFormGcs(projectId, location, outputGcsBucketName, outputGcsPrefix, inputGcsUri);
+    batchParseFormGcs(projectId, outputGcsBucketName, outputGcsPrefix, inputGcsUri);
   }
 
   public static void batchParseFormGcs(
       String projectId,
-      String location,
       String outputGcsBucketName,
       String outputGcsPrefix,
       String inputGcsUri)
@@ -72,7 +70,7 @@ public class BatchParseForm {
         DocumentUnderstandingServiceClient.create()) {
 
       // Configure the request for processing the PDF
-      String parent = String.format("projects/%s/locations/%s", projectId, location);
+      String parent = String.format("projects/%s", projectId);
 
       // Improve form parsing results by providing key-value pair hints.
       // For each key hint, key is text that is likely to appear in the

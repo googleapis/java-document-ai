@@ -42,7 +42,7 @@ public class SetEndpointTest {
   @Test
   public void testSetEndPoint() throws IOException {
     // process a pdf in another region.
-    SetEndPoint.setEndpoint(PROJECT_ID, "us-west2", INPUT_URI);
+    SetEndPoint.setEndpoint(PROJECT_ID, INPUT_URI);
     String got = bout.toString();
 
     assertThat(got).contains("Entity");

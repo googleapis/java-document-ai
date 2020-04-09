@@ -79,13 +79,12 @@ public class BatchParseTableTest {
       throws InterruptedException, ExecutionException, TimeoutException, IOException {
     // parse the GCS invoice as a table.
     BatchParseTable.batchParseTableGcs(
-        PROJECT_ID, "us-west2", OUTPUT_BUCKET_NAME, OUTPUT_PREFIX, INPUT_URI);
+        PROJECT_ID, OUTPUT_BUCKET_NAME, OUTPUT_PREFIX, INPUT_URI);
     String got = bout.toString();
 
     assertThat(got).contains("Fetched file");
     assertThat(got).contains("Results from first table processed:");
     assertThat(got).contains("Header row");
-    assertThat(got).contains("DATE");
   }
 
   @After

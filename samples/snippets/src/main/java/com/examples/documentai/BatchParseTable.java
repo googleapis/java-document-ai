@@ -54,16 +54,14 @@ public class BatchParseTable {
       throws IOException, InterruptedException, ExecutionException, TimeoutException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
-    String location = "us-central1";
     String outputGcsBucketName = "your-gcs-bucket-name";
     String outputGcsPrefix = "PREFIX";
     String inputGcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
-    batchParseTableGcs(projectId, location, outputGcsBucketName, outputGcsPrefix, inputGcsUri);
+    batchParseTableGcs(projectId, outputGcsBucketName, outputGcsPrefix, inputGcsUri);
   }
 
   public static void batchParseTableGcs(
       String projectId,
-      String location,
       String outputGcsBucketName,
       String outputGcsPrefix,
       String inputGcsUri)
@@ -75,7 +73,7 @@ public class BatchParseTable {
         DocumentUnderstandingServiceClient.create()) {
 
       // Configure the request for processing the PDF
-      String parent = String.format("projects/%s/locations/%s", projectId, location);
+      String parent = String.format("projects/%s", projectId);
 
       TableBoundHint tableBoundHints =
           TableBoundHint.newBuilder()
@@ -86,6 +84,7 @@ public class BatchParseTable {
                       .addNormalizedVertices(NormalizedVertex.newBuilder().setX(1).setY(1).build())
                       .addNormalizedVertices(NormalizedVertex.newBuilder().setX(0).setY(1).build())
                       .build())
+              .setPageNumber(1)
               .build();
 
       TableExtractionParams params =

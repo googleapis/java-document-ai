@@ -42,7 +42,7 @@ public class QuickStartTest {
   @Test
   public void testQuickStart() throws IOException {
     // parse a PDF document.
-    QuickStart.quickStart(PROJECT_ID, "us-west2", INPUT_URI);
+    QuickStart.quickStart(PROJECT_ID, INPUT_URI);
     String got = bout.toString();
 
     assertThat(got).contains("Entity");

@@ -79,7 +79,7 @@ public class BatchParseFormTest {
       throws InterruptedException, ExecutionException, TimeoutException, IOException {
     // parse the GCS invoice as a form.
     BatchParseForm.batchParseFormGcs(
-        PROJECT_ID, "us-west2", OUTPUT_BUCKET_NAME, OUTPUT_PREFIX, INPUT_URI);
+        PROJECT_ID, OUTPUT_BUCKET_NAME, OUTPUT_PREFIX, INPUT_URI);
     String got = bout.toString();
 
     assertThat(got).contains("Fetched file");

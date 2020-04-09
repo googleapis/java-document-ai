@@ -43,10 +43,10 @@ public class ParseFormTest {
   @Test
   public void testParseForm() throws InterruptedException, ExecutionException, IOException {
     // parse the GCS invoice as a form.
-    ParseForm.parseForm(PROJECT_ID, "us-west2", INPUT_URI);
+    ParseForm.parseForm(PROJECT_ID, INPUT_URI);
     String got = bout.toString();
 
-    assertThat(got).contains("Extracted key value pair:");
+    assertThat(got).contains("Extracted form fields pair:");
   }
 
   @After

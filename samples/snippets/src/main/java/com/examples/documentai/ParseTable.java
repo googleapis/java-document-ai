@@ -28,25 +28,24 @@ import com.google.cloud.documentai.v1beta2.ProcessDocumentRequest;
 import com.google.cloud.documentai.v1beta2.TableBoundHint;
 import com.google.cloud.documentai.v1beta2.TableExtractionParams;
 import java.io.IOException;
+import java.util.List;
 
 public class ParseTable {
 
   public static void parseTable() throws IOException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
-    String location = "us-central1";
     String inputGcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
-    parseTable(projectId, location, inputGcsUri);
+    parseTable(projectId, inputGcsUri);
   }
 
-  public static void parseTable(String projectId, String location, String inputGcsUri)
-      throws IOException {
+  public static void parseTable(String projectId, String inputGcsUri) throws IOException {
     // Initialize client that will be used to send requests. This client only needs to be created
     // once, and can be reused for multiple requests. After completing all of your requests, call
     // the "close" method on the client to safely clean up any remaining background resources.
     try (DocumentUnderstandingServiceClient client = DocumentUnderstandingServiceClient.create()) {
       // Configure the request for processing the PDF
-      String parent = String.format("projects/%s/locations/%s", projectId, location);
+      String parent = String.format("projects/%s", projectId);
 
       TableBoundHint tableBoundHints =
           TableBoundHint.newBuilder()
@@ -57,6 +56,7 @@ public class ParseTable {
                       .addNormalizedVertices(NormalizedVertex.newBuilder().setX(1).setX(1).build())
                       .addNormalizedVertices(NormalizedVertex.newBuilder().setX(0).setX(1).build())
                       .build())
+              .setPageNumber(1)
               .build();
 
       TableExtractionParams params =
@@ -68,10 +68,12 @@ public class ParseTable {
       GcsSource uri = GcsSource.newBuilder().setUri(inputGcsUri).build();
 
       InputConfig config =
-          InputConfig.newBuilder().setGcsSource(uri)
-                  // mime_type can be application/pdf, image/tiff,
-                  // and image/gif, or application/json
-                  .setMimeType("application/pdf").build();
+          InputConfig.newBuilder()
+              .setGcsSource(uri)
+              // mime_type can be application/pdf, image/tiff,
+              // and image/gif, or application/json
+              .setMimeType("application/pdf")
+              .build();
 
       ProcessDocumentRequest request =
           ProcessDocumentRequest.newBuilder()
@@ -89,8 +91,14 @@ public class ParseTable {
       // Get the first table in the document
       Document.Page page1 = response.getPages(0);
       Document.Page.Table table = page1.getTables(0);
-      Document.Page.Table.TableRow headerRow = table.getHeaderRows(0);
 
+      System.out.println("Results from first table processed:");
+      List<Document.Page.DetectedLanguage> detectedLangs = page1.getDetectedLanguagesList();
+      String langCode =
+          detectedLangs.size() > 0 ? detectedLangs.get(0).getLanguageCode() : "NOT_FOUND";
+      System.out.printf("First detected language: : %s", langCode);
+
+      Document.Page.Table.TableRow headerRow = table.getHeaderRows(0);
       System.out.println("Header row:");
 
       for (Document.Page.Table.TableCell tableCell : headerRow.getCellsList()) {

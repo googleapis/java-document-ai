@@ -30,21 +30,19 @@ public class QuickStart {
   public static void quickStart() throws IOException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
-    String location = "us-central1";
     String inputGcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
-    quickStart(projectId, location, inputGcsUri);
+    quickStart(projectId, inputGcsUri);
   }
 
-  public static void quickStart(String projectId, String location, String inputGcsUri)
+  public static void quickStart(String projectId, String inputGcsUri)
       throws IOException {
     // Initialize client that will be used to send requests. This client only needs to be created
     // once, and can be reused for multiple requests. After completing all of your requests, call
     // the "close" method on the client to safely clean up any remaining background resources.
     try (DocumentUnderstandingServiceClient client = DocumentUnderstandingServiceClient.create()) {
       // Configure the request for processing the PDF
-      String parent = String.format("projects/%s/locations/%s", projectId, location);
+      String parent = String.format("projects/%s", projectId);
 
-      System.out.println(parent);
       GcsSource uri = GcsSource.newBuilder().setUri(inputGcsUri).build();
 
       InputConfig config =

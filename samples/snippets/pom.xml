@@ -41,6 +41,8 @@
     <dependency>
       <groupId>com.google.cloud</groupId>
       <artifactId>google-cloud-document-ai</artifactId>
+      <!-- force version to pick up 0.1.1 -->
+      <version>0.1.1</version>
     </dependency>
     <dependency>
       <groupId>com.google.cloud</groupId>

@@ -31,16 +31,15 @@ public class SetEndPoint {
   public static void setEndpoint() throws IOException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
-    String location = "us-central1";
     String inputGcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
-    setEndpoint(projectId, location, inputGcsUri);
+    setEndpoint(projectId, inputGcsUri);
   }
 
-  public static void setEndpoint(String projectId, String location, String inputGcsUri)
+  public static void setEndpoint(String projectId, String inputGcsUri)
       throws IOException {
     DocumentUnderstandingServiceSettings settings =
         DocumentUnderstandingServiceSettings.newBuilder()
-            .setEndpoint("us-documentai.googleapis.com:443")
+            .setEndpoint("eu-documentai.googleapis.com:443")
             .build();
 
     // Initialize client that will be used to send requests. This client only needs to be created
@@ -49,7 +48,7 @@ public class SetEndPoint {
     try (DocumentUnderstandingServiceClient client =
         DocumentUnderstandingServiceClient.create(settings)) {
       // Configure the request for processing the PDF
-      String parent = String.format("projects/%s/locations/%s", projectId, location);
+      String parent = String.format("projects/%s/locations/europe-west2", projectId);
 
       GcsSource uri = GcsSource.newBuilder().setUri(inputGcsUri).build();
 

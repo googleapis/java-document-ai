@@ -37,7 +37,6 @@ import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.Bucket;
 import com.google.cloud.storage.Storage;
 import com.google.cloud.storage.StorageOptions;
-import com.google.protobuf.ByteString;
 import com.google.protobuf.util.JsonFormat;
 import java.io.File;
 import java.io.FileReader;

@@ -43,7 +43,7 @@ public class ParseForm {
     // the "close" method on the client to safely clean up any remaining background resources.
     try (DocumentUnderstandingServiceClient client = DocumentUnderstandingServiceClient.create()) {
       // Configure the request for processing the PDF
-      String parent = String.format("projects/%s", projectId);
+      String parent = String.format("projects/%s/locations/us", projectId);
 
       // Improve form parsing results by providing key-value pair hints.
       // For each key hint, key is text that is likely to appear in the

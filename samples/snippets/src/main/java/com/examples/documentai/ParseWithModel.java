@@ -43,7 +43,7 @@ public class ParseWithModel {
     // the "close" method on the client to safely clean up any remaining background resources.
     try (DocumentUnderstandingServiceClient client = DocumentUnderstandingServiceClient.create()) {
       // Configure the request for processing the PDF
-      String parent = String.format("projects/%s", projectId);
+      String parent = String.format("projects/%s/locations/us", projectId);
 
       AutoMlParams params = AutoMlParams.newBuilder().setModel(autoMlModel).build();
 

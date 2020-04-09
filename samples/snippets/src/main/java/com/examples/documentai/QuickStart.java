@@ -41,7 +41,7 @@ public class QuickStart {
     // the "close" method on the client to safely clean up any remaining background resources.
     try (DocumentUnderstandingServiceClient client = DocumentUnderstandingServiceClient.create()) {
       // Configure the request for processing the PDF
-      String parent = String.format("projects/%s", projectId);
+      String parent = String.format("projects/%s/locations/us", projectId);
 
       GcsSource uri = GcsSource.newBuilder().setUri(inputGcsUri).build();
 

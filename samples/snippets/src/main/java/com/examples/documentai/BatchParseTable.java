@@ -73,7 +73,7 @@ public class BatchParseTable {
         DocumentUnderstandingServiceClient.create()) {
 
       // Configure the request for processing the PDF
-      String parent = String.format("projects/%s", projectId);
+      String parent = String.format("projects/%s/locations/us", projectId);
 
       TableBoundHint tableBoundHints =
           TableBoundHint.newBuilder()

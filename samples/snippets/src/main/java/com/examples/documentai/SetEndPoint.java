@@ -48,7 +48,7 @@ public class SetEndPoint {
     try (DocumentUnderstandingServiceClient client =
         DocumentUnderstandingServiceClient.create(settings)) {
       // Configure the request for processing the PDF
-      String parent = String.format("projects/%s/locations/europe-west2", projectId);
+      String parent = String.format("projects/%s/locations/eu", projectId);
 
       GcsSource uri = GcsSource.newBuilder().setUri(inputGcsUri).build();
 

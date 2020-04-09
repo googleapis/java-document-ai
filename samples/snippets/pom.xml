@@ -61,6 +61,7 @@
       <version>1.0.1</version>
       <scope>test</scope>
     </dependency>
+  <!-- [START documentai_install_with_bom] -->
   </dependencies>
   <!-- [END documentai_install_with_bom] -->
 </project>

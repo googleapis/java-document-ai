@@ -27,7 +27,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ParseFormTest {
-  private static final String PROJECT_ID = System.getenv("GOOGLE_CLOUD_PROJECT");
+  private static final String PROJECT_ID = System.getenv("GCLOUD_PROJECT");
   private static final String INPUT_URI = "gs://cloud-samples-data/documentai/invoice.pdf";
 
   private ByteArrayOutputStream bout;

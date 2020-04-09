@@ -26,7 +26,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ParseWithModelTest {
-  private static final String PROJECT_ID = System.getenv("GOOGLE_CLOUD_PROJECT");
+  private static final String PROJECT_ID = System.getenv("GCLOUD_PROJECT");
   private static final String INPUT_URI = "gs://cloud-samples-data/documentai/invoice.pdf";
   private static final String AUTO_ML_MODEL_ID =
       "projects/779844219229/locations/us-central1/models/TCN6871084728972835631";

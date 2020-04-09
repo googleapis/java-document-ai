@@ -31,7 +31,7 @@ public class ParseWithModel {
   public static void parseWithModel() throws IOException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
-    String autoMlModel = "your-full-resource-model-name";
+    String autoMlModelId = "your-automl-model-id";
     String gcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
     parseWithModel(projectId, autoMlModel, gcsUri);
   }

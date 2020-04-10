@@ -33,11 +33,11 @@ public class ParseWithModel {
     String projectId = "your-project-id";
     String autoMlModelId = "your-automl-model-id";
     String gcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
-    parseWithModel(projectId, autoMlModel, gcsUri);
+    parseWithModel(projectId, autoMlModelId, gcsUri);
   }
 
-  public static void parseWithModel(
-      String projectId, String autoMlModel, String gcsUri) throws IOException {
+  public static void parseWithModel(String projectId, String autoMlModelId, String gcsUri)
+      throws IOException {
     // Initialize client that will be used to send requests. This client only needs to be created
     // once, and can be reused for multiple requests. After completing all of your requests, call
     // the "close" method on the client to safely clean up any remaining background resources.
@@ -45,16 +45,19 @@ public class ParseWithModel {
       // Configure the request for processing the PDF
       String parent = String.format("projects/%s/locations/us", projectId);
 
-      String model = String.format("projects/%s/locations/us-central1/models/%s", projectId, autoMlModelId);
+      String model =
+          String.format("projects/%s/locations/us-central1/models/%s", projectId, autoMlModelId);
       AutoMlParams params = AutoMlParams.newBuilder().setModel(model).build();
 
       GcsSource uri = GcsSource.newBuilder().setUri(gcsUri).build();
 
       InputConfig config =
-          InputConfig.newBuilder().setGcsSource(uri)
-                  // mime_type can be application/pdf, image/tiff,
-                  // and image/gif, or application/json
-                  .setMimeType("application/pdf").build();
+          InputConfig.newBuilder()
+              .setGcsSource(uri)
+              // mime_type can be application/pdf, image/tiff,
+              // and image/gif, or application/json
+              .setMimeType("application/pdf")
+              .build();
 
       ProcessDocumentRequest request =
           ProcessDocumentRequest.newBuilder()

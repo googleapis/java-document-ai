@@ -45,7 +45,9 @@ public class ParseWithModel {
       // Configure the request for processing the PDF
       String parent = String.format("projects/%s/locations/us", projectId);
 
-      AutoMlParams params = AutoMlParams.newBuilder().setModel(autoMlModelId).build();
+      String model =
+          String.format("projects/%s/locations/us-central1/models/%s", projectId, autoMlModelId);
+      AutoMlParams params = AutoMlParams.newBuilder().setModel(model).build();
 
       GcsSource uri = GcsSource.newBuilder().setUri(gcsUri).build();
 

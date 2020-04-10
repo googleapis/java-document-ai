@@ -27,9 +27,9 @@ import org.junit.Test;
 
 public class ParseWithModelTest {
   private static final String PROJECT_ID = System.getenv("GCLOUD_PROJECT");
+  private static final String AUTOML_PROJECT_ID = System.getenv("AUTOML_PROJECT_ID");
   private static final String INPUT_URI = "gs://cloud-samples-data/documentai/invoice.pdf";
-  private static final String AUTO_ML_MODEL_ID =
-      "TCN5463389715535233024";
+  private static final String AUTO_ML_MODEL_ID = System.getenv("TEXT_CLASSIFICATION_MODEL_ID");
   private ByteArrayOutputStream bout;
   private PrintStream out;
 
@@ -43,7 +43,10 @@ public class ParseWithModelTest {
   @Test
   public void testParseWithModel() throws IOException {
     // parse a PDF using AutoML model.
-    ParseWithModel.parseWithModel(PROJECT_ID, AUTO_ML_MODEL_ID, INPUT_URI);
+    String model =
+        String.format(
+            "projects/%s/locations/us-central1/models/%s", AUTOML_PROJECT_ID, AUTO_ML_MODEL_ID);
+    ParseWithModel.parseWithModel(PROJECT_ID, model, INPUT_URI);
     String got = bout.toString();
 
     assertThat(got).contains("Label");

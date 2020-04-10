@@ -29,7 +29,7 @@ public class ParseWithModelTest {
   private static final String PROJECT_ID = System.getenv("GCLOUD_PROJECT");
   private static final String INPUT_URI = "gs://cloud-samples-data/documentai/invoice.pdf";
   private static final String AUTO_ML_MODEL_ID =
-      "TCN5463389715535233024";
+      String.format("projects/%s/locations/us-central1/models/%s", "250644331956","TCN5463389715535233024");
   private ByteArrayOutputStream bout;
   private PrintStream out;
 

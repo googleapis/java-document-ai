@@ -31,11 +31,12 @@ public class SetEndPoint {
   public static void setEndpoint() throws IOException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
+    String location = "your-project-location"; // Format is "us" or "eu".
     String inputGcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
-    setEndpoint(projectId, inputGcsUri);
+    setEndpoint(projectId, location, inputGcsUri);
   }
 
-  public static void setEndpoint(String projectId, String inputGcsUri)
+  public static void setEndpoint(String projectId, String location, String inputGcsUri)
       throws IOException {
     DocumentUnderstandingServiceSettings settings =
         DocumentUnderstandingServiceSettings.newBuilder()
@@ -48,14 +49,14 @@ public class SetEndPoint {
     try (DocumentUnderstandingServiceClient client =
         DocumentUnderstandingServiceClient.create(settings)) {
       // Configure the request for processing the PDF
-      String parent = String.format("projects/%s/locations/eu", projectId);
+      String parent = String.format("projects/%s/locations/%s", projectId, location);
 
       GcsSource uri = GcsSource.newBuilder().setUri(inputGcsUri).build();
 
+      // mime_type can be application/pdf, image/tiff,
+      // and image/gif, or application/json
       InputConfig config =
           InputConfig.newBuilder().setGcsSource(uri)
-                  // mime_type can be application/pdf, image/tiff,
-                  // and image/gif, or application/json
                   .setMimeType("application/pdf").build();
 
       ProcessDocumentRequest request =

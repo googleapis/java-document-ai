@@ -17,6 +17,7 @@
 package com.examples.documentai;
 
 import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -32,6 +33,18 @@ public class ParseTableTest {
   private ByteArrayOutputStream bout;
   private PrintStream out;
 
+  private static void requireEnvVar(String varName) {
+    assertNotNull(
+            String.format("Environment variable '%s' must be set to perform these tests.", varName),
+            System.getenv(varName));
+  }
+
+  @Before
+  public void checkRequirements() {
+    requireEnvVar("GCLOUD_PROJECT");
+    requireEnvVar("GOOGLE_APPLICATION_CREDENTIALS");
+  }
+
   @Before
   public void setUp() {
     bout = new ByteArrayOutputStream();
@@ -42,7 +55,7 @@ public class ParseTableTest {
   @Test
   public void testParseTable() throws IOException {
     // parse the GCS invoice as a table.
-    ParseTable.parseTable(PROJECT_ID, INPUT_URI);
+    ParseTable.parseTable(PROJECT_ID,"us", INPUT_URI);
     String got = bout.toString();
 
     assertThat(got).contains("First detected language");

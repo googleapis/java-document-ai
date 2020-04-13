@@ -54,14 +54,16 @@ public class BatchParseTable {
       throws IOException, InterruptedException, ExecutionException, TimeoutException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
+    String location = "your-project-location"; // Format is "us" or "eu".
     String outputGcsBucketName = "your-gcs-bucket-name";
     String outputGcsPrefix = "PREFIX";
     String inputGcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
-    batchParseTableGcs(projectId, outputGcsBucketName, outputGcsPrefix, inputGcsUri);
+    batchParseTableGcs(projectId, location, outputGcsBucketName, outputGcsPrefix, inputGcsUri);
   }
 
   public static void batchParseTableGcs(
       String projectId,
+      String location,
       String outputGcsBucketName,
       String outputGcsPrefix,
       String inputGcsUri)
@@ -73,7 +75,7 @@ public class BatchParseTable {
         DocumentUnderstandingServiceClient.create()) {
 
       // Configure the request for processing the PDF
-      String parent = String.format("projects/%s/locations/us", projectId);
+      String parent = String.format("projects/%s/locations/%s", projectId, location);
 
       TableBoundHint tableBoundHints =
           TableBoundHint.newBuilder()
@@ -95,10 +97,10 @@ public class BatchParseTable {
 
       GcsSource inputUri = GcsSource.newBuilder().setUri(inputGcsUri).build();
 
+      // mime_type can be application/pdf, image/tiff,
+      // and image/gif, or application/json
       InputConfig config =
           InputConfig.newBuilder().setGcsSource(inputUri)
-                  // mime_type can be application/pdf, image/tiff,
-                  // and image/gif, or application/json
                   .setMimeType("application/pdf").build();
 
       GcsDestination gcsDestination = GcsDestination.newBuilder()

@@ -17,6 +17,7 @@
 package com.examples.documentai;
 
 import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.assertNotNull;
 
 import com.google.api.gax.paging.Page;
 import com.google.cloud.storage.Blob;
@@ -40,6 +41,18 @@ public class BatchParseTableTest {
 
   private ByteArrayOutputStream bout;
   private PrintStream out;
+
+  private static void requireEnvVar(String varName) {
+    assertNotNull(
+            String.format("Environment variable '%s' must be set to perform these tests.", varName),
+            System.getenv(varName));
+  }
+
+  @Before
+  public void checkRequirements() {
+    requireEnvVar("GCLOUD_PROJECT");
+    requireEnvVar("GOOGLE_APPLICATION_CREDENTIALS");
+  }
 
   private static void cleanUpBucket() {
     Storage storage = StorageOptions.getDefaultInstance().getService();
@@ -79,7 +92,7 @@ public class BatchParseTableTest {
       throws InterruptedException, ExecutionException, TimeoutException, IOException {
     // parse the GCS invoice as a table.
     BatchParseTable.batchParseTableGcs(
-        PROJECT_ID, OUTPUT_BUCKET_NAME, OUTPUT_PREFIX, INPUT_URI);
+        PROJECT_ID, "us", OUTPUT_BUCKET_NAME, OUTPUT_PREFIX, INPUT_URI);
     String got = bout.toString();
 
     assertThat(got).contains("Fetched file");

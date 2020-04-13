@@ -35,17 +35,18 @@ public class ParseTable {
   public static void parseTable() throws IOException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
+     String location = "your-project-location"; // Format is "us" or "eu".
     String inputGcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
-    parseTable(projectId, inputGcsUri);
+    parseTable(projectId, location, inputGcsUri);
   }
 
-  public static void parseTable(String projectId, String inputGcsUri) throws IOException {
+  public static void parseTable(String projectId, String location, String inputGcsUri) throws IOException {
     // Initialize client that will be used to send requests. This client only needs to be created
     // once, and can be reused for multiple requests. After completing all of your requests, call
     // the "close" method on the client to safely clean up any remaining background resources.
     try (DocumentUnderstandingServiceClient client = DocumentUnderstandingServiceClient.create()) {
       // Configure the request for processing the PDF
-      String parent = String.format("projects/%s/locations/us", projectId);
+      String parent = String.format("projects/%s/locations/%s", projectId, location);
 
       TableBoundHint tableBoundHints =
           TableBoundHint.newBuilder()
@@ -67,11 +68,11 @@ public class ParseTable {
 
       GcsSource uri = GcsSource.newBuilder().setUri(inputGcsUri).build();
 
+      // mime_type can be application/pdf, image/tiff,
+      // and image/gif, or application/json
       InputConfig config =
           InputConfig.newBuilder()
               .setGcsSource(uri)
-              // mime_type can be application/pdf, image/tiff,
-              // and image/gif, or application/json
               .setMimeType("application/pdf")
               .build();
 

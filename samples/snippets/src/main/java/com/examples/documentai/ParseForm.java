@@ -32,18 +32,19 @@ public class ParseForm {
   public static void parseForm() throws IOException, ExecutionException, InterruptedException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
+     String location = "your-project-location"; // Format is "us" or "eu".
     String inputGcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
-    parseForm(projectId, inputGcsUri);
+    parseForm(projectId, location, inputGcsUri);
   }
 
-  public static void parseForm(String projectId, String inputGcsUri)
+  public static void parseForm(String projectId, String location, String inputGcsUri)
       throws IOException, ExecutionException, InterruptedException {
     // Initialize client that will be used to send requests. This client only needs to be created
     // once, and can be reused for multiple requests. After completing all of your requests, call
     // the "close" method on the client to safely clean up any remaining background resources.
     try (DocumentUnderstandingServiceClient client = DocumentUnderstandingServiceClient.create()) {
       // Configure the request for processing the PDF
-      String parent = String.format("projects/%s/locations/us", projectId);
+      String parent = String.format("projects/%s/locations/%s", projectId, location);
 
       // Improve form parsing results by providing key-value pair hints.
       // For each key hint, key is text that is likely to appear in the
@@ -70,10 +71,10 @@ public class ParseForm {
 
       GcsSource uri = GcsSource.newBuilder().setUri(inputGcsUri).build();
 
+      // mime_type can be application/pdf, image/tiff,
+      // and image/gif, or application/json
       InputConfig config =
           InputConfig.newBuilder().setGcsSource(uri)
-                  // mime_type can be application/pdf, image/tiff,
-                  // and image/gif, or application/json
                   .setMimeType("application/pdf").build();
 
       ProcessDocumentRequest request =

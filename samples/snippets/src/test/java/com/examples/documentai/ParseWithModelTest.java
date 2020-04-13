@@ -17,6 +17,7 @@
 package com.examples.documentai;
 
 import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -33,6 +34,21 @@ public class ParseWithModelTest {
   private ByteArrayOutputStream bout;
   private PrintStream out;
 
+
+  private static void requireEnvVar(String varName) {
+    assertNotNull(
+            String.format("Environment variable '%s' must be set to perform these tests.", varName),
+            System.getenv(varName));
+  }
+
+  @Before
+  public void checkRequirements() {
+    requireEnvVar("GCLOUD_PROJECT");
+    requireEnvVar("GOOGLE_APPLICATION_CREDENTIALS");
+    requireEnvVar("AUTOML_PROJECT_ID");
+    requireEnvVar("TEXT_CLASSIFICATION_MODEL_ID");
+  }
+
   @Before
   public void setUp() {
     bout = new ByteArrayOutputStream();
@@ -46,7 +62,7 @@ public class ParseWithModelTest {
     String model =
         String.format(
             "projects/%s/locations/us-central1/models/%s", AUTOML_PROJECT_ID, AUTO_ML_MODEL_ID);
-    ParseWithModel.parseWithModel(PROJECT_ID, model, INPUT_URI);
+    ParseWithModel.parseWithModel(PROJECT_ID, "us",model, INPUT_URI);
     String got = bout.toString();
 
     assertThat(got).contains("Label");

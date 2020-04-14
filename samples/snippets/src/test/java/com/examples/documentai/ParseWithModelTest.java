@@ -59,6 +59,7 @@ public class ParseWithModelTest {
     String model =
         String.format(
             "projects/%s/locations/us-central1/models/%s", PROJECT_ID, AUTO_ML_MODEL_ID);
+    assertThat(PROJECT_ID).contains("java-docs");
     ParseWithModel.parseWithModel(PROJECT_ID, "us", model, INPUT_URI);
     String got = bout.toString();
 

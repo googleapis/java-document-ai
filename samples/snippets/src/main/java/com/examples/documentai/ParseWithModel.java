@@ -31,7 +31,7 @@ public class ParseWithModel {
   public static void parseWithModel() throws IOException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
-     String location = "your-project-location"; // Format is "us" or "eu".
+    String location = "your-project-location"; // Format is "us" or "eu".
     String autoMlModel = "your-full-resource-model-name";
     String gcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
     parseWithModel(projectId, location, autoMlModel, gcsUri);
@@ -53,8 +53,7 @@ public class ParseWithModel {
       // mime_type can be application/pdf, image/tiff,
       // and image/gif, or application/json
       InputConfig config =
-          InputConfig.newBuilder().setGcsSource(uri)
-                  .setMimeType("application/pdf").build();
+          InputConfig.newBuilder().setGcsSource(uri).setMimeType("application/pdf").build();
 
       ProcessDocumentRequest request =
           ProcessDocumentRequest.newBuilder()

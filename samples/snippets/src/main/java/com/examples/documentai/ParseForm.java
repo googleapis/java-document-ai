@@ -32,7 +32,7 @@ public class ParseForm {
   public static void parseForm() throws IOException, ExecutionException, InterruptedException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
-     String location = "your-project-location"; // Format is "us" or "eu".
+    String location = "your-project-location"; // Format is "us" or "eu".
     String inputGcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
     parseForm(projectId, location, inputGcsUri);
   }
@@ -74,8 +74,7 @@ public class ParseForm {
       // mime_type can be application/pdf, image/tiff,
       // and image/gif, or application/json
       InputConfig config =
-          InputConfig.newBuilder().setGcsSource(uri)
-                  .setMimeType("application/pdf").build();
+          InputConfig.newBuilder().setGcsSource(uri).setMimeType("application/pdf").build();
 
       ProcessDocumentRequest request =
           ProcessDocumentRequest.newBuilder()

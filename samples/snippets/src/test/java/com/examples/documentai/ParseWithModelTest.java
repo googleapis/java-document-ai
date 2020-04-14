@@ -28,9 +28,8 @@ import org.junit.Test;
 
 public class ParseWithModelTest {
   private static final String PROJECT_ID = System.getenv("GCLOUD_PROJECT");
-  private static final String AUTOML_PROJECT_ID = System.getenv("AUTOML_PROJECT_ID");
   private static final String INPUT_URI = "gs://cloud-samples-data/documentai/invoice.pdf";
-  private static final String AUTO_ML_MODEL_ID = System.getenv("TEXT_CLASSIFICATION_MODEL_ID");
+  private static final String AUTO_ML_MODEL_ID = "TCN6871084728972835631";
   private ByteArrayOutputStream bout;
   private PrintStream out;
 
@@ -45,8 +44,6 @@ public class ParseWithModelTest {
   public void checkRequirements() {
     requireEnvVar("GCLOUD_PROJECT");
     requireEnvVar("GOOGLE_APPLICATION_CREDENTIALS");
-    requireEnvVar("AUTOML_PROJECT_ID");
-    requireEnvVar("TEXT_CLASSIFICATION_MODEL_ID");
   }
 
   @Before
@@ -61,8 +58,8 @@ public class ParseWithModelTest {
     // parse a PDF using AutoML model.
     String model =
         String.format(
-            "projects/%s/locations/us-central1/models/%s", AUTOML_PROJECT_ID, AUTO_ML_MODEL_ID);
-    ParseWithModel.parseWithModel(PROJECT_ID, "us",model, INPUT_URI);
+            "projects/%s/locations/us-central1/models/%s", PROJECT_ID, AUTO_ML_MODEL_ID);
+    ParseWithModel.parseWithModel(PROJECT_ID, "us", model, INPUT_URI);
     String got = bout.toString();
 
     assertThat(got).contains("Label");

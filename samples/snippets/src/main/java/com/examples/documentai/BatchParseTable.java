@@ -71,8 +71,7 @@ public class BatchParseTable {
     // Initialize client that will be used to send requests. This client only needs to be created
     // once, and can be reused for multiple requests. After completing all of your requests, call
     // the "close" method on the client to safely clean up any remaining background resources.
-    try (DocumentUnderstandingServiceClient client =
-        DocumentUnderstandingServiceClient.create()) {
+    try (DocumentUnderstandingServiceClient client = DocumentUnderstandingServiceClient.create()) {
 
       // Configure the request for processing the PDF
       String parent = String.format("projects/%s/locations/%s", projectId, location);
@@ -80,11 +79,17 @@ public class BatchParseTable {
       TableBoundHint tableBoundHints =
           TableBoundHint.newBuilder()
               .setBoundingBox(
+                  // Define a polygon around tables to detect
+                  // Each vertice coordinate must be a number between 0 and 1
                   BoundingPoly.newBuilder()
-                      .addNormalizedVertices(NormalizedVertex.newBuilder().setX(0).setY(0).build())
-                      .addNormalizedVertices(NormalizedVertex.newBuilder().setX(1).setY(0).build())
-                      .addNormalizedVertices(NormalizedVertex.newBuilder().setX(1).setY(1).build())
-                      .addNormalizedVertices(NormalizedVertex.newBuilder().setX(0).setY(1).build())
+                      // top left
+                      .addNormalizedVertices(NormalizedVertex.newBuilder().setX(0).setX(0).build())
+                      // top right
+                      .addNormalizedVertices(NormalizedVertex.newBuilder().setX(1).setX(0).build())
+                      // bottom right
+                      .addNormalizedVertices(NormalizedVertex.newBuilder().setX(1).setX(1).build())
+                      // bottom left
+                      .addNormalizedVertices(NormalizedVertex.newBuilder().setX(0).setX(1).build())
                       .build())
               .setPageNumber(1)
               .build();
@@ -100,16 +105,15 @@ public class BatchParseTable {
       // mime_type can be application/pdf, image/tiff,
       // and image/gif, or application/json
       InputConfig config =
-          InputConfig.newBuilder().setGcsSource(inputUri)
-                  .setMimeType("application/pdf").build();
+          InputConfig.newBuilder().setGcsSource(inputUri).setMimeType("application/pdf").build();
 
-      GcsDestination gcsDestination = GcsDestination.newBuilder()
-              .setUri(String.format("gs://%s/%s", outputGcsBucketName, outputGcsPrefix)).build();
-
-      OutputConfig outputConfig =  OutputConfig.newBuilder()
-              .setGcsDestination(gcsDestination)
-              .setPagesPerShard(1)
+      GcsDestination gcsDestination =
+          GcsDestination.newBuilder()
+              .setUri(String.format("gs://%s/%s", outputGcsBucketName, outputGcsPrefix))
               .build();
+
+      OutputConfig outputConfig =
+          OutputConfig.newBuilder().setGcsDestination(gcsDestination).setPagesPerShard(1).build();
 
       ProcessDocumentRequest request =
           ProcessDocumentRequest.newBuilder()
@@ -163,7 +167,6 @@ public class BatchParseTable {
           // Process the output.
           Document.Page page1 = document.getPages(0);
           Document.Page.Table table = page1.getTables(0);
-
 
           System.out.println("Results from first table processed:");
           System.out.println(

@@ -41,7 +41,7 @@ public class QuickStart {
     // once, and can be reused for multiple requests. After completing all of your requests, call
     // the "close" method on the client to safely clean up any remaining background resources.
     try (DocumentUnderstandingServiceClient client = DocumentUnderstandingServiceClient.create()) {
-      // Configure the request for processing the PDF
+      // Configure the request for processing a single document
       String parent = String.format("projects/%s/locations/%s", projectId, location);
 
       GcsSource uri = GcsSource.newBuilder().setUri(inputGcsUri).build();

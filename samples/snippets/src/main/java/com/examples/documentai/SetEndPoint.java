@@ -16,7 +16,7 @@
 
 package com.examples.documentai;
 
-// [START document_quickstart]
+// [START documentai_set_endpoint]
 
 import com.google.cloud.documentai.v1beta2.Document;
 import com.google.cloud.documentai.v1beta2.DocumentUnderstandingServiceClient;
@@ -83,4 +83,4 @@ public class SetEndPoint {
     return text.substring(startIdx, endIdx);
   }
 }
-// [END document_quickstart]
+// [END documentai_set_endpoint]

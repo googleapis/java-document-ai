@@ -52,10 +52,16 @@ public class ParseTable {
       TableBoundHint tableBoundHints =
           TableBoundHint.newBuilder()
               .setBoundingBox(
+                  // Define a polygon around tables to detect
+                  // Each vertice coordinate must be a number between 0 and 1
                   BoundingPoly.newBuilder()
+                      // top left
                       .addNormalizedVertices(NormalizedVertex.newBuilder().setX(0).setX(0).build())
+                      // top right
                       .addNormalizedVertices(NormalizedVertex.newBuilder().setX(1).setX(0).build())
+                      // bottom right
                       .addNormalizedVertices(NormalizedVertex.newBuilder().setX(1).setX(1).build())
+                      // bottom left
                       .addNormalizedVertices(NormalizedVertex.newBuilder().setX(0).setX(1).build())
                       .build())
               .setPageNumber(1)

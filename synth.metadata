@@ -1,27 +1,33 @@
 {
-  "updateTime": "2020-04-06T23:26:05.388158Z",
   "sources": [
     {
       "git": {
-        "name": "googleapis",
-        "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "d6cb4997910eda04c0c66c0f2fd043eeaa0f660d",
-        "internalRef": "304724866"
+        "name": ".",
+        "remote": "https://github.com/googleapis/java-document-ai.git",
+        "sha": "77f4723d3e17602d31051643986a321080b9da19"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "d6cb4997910eda04c0c66c0f2fd043eeaa0f660d",
-        "internalRef": "304724866"
+        "sha": "f9d76ac088f5d444b16d5e17fe58a9eea57b7a99",
+        "internalRef": "305961792"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "f9d76ac088f5d444b16d5e17fe58a9eea57b7a99",
+        "internalRef": "305961792"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "e36822bfa0acb355502dab391b8ef9c4f30208d8"
+        "sha": "52638600f387deb98efb5f9c85fec39e82aa9052"
       }
     }
   ],

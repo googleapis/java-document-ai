@@ -36,6 +36,7 @@
       <artifactId>google-cloud-storage</artifactId>
       <version>1.103.1</version>
     </dependency>
+      <!-- [END documentai_install_without_bom] -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -49,7 +50,6 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <!-- [END documentai_install_without_bom] -->
 
   <!-- compile and run all snippet tests -->
   <build>

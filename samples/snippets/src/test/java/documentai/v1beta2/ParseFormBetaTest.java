@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.examples.documentai;
+package documentai.v1beta2;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertNotNull;
@@ -22,11 +22,12 @@ import static org.junit.Assert.assertNotNull;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.concurrent.ExecutionException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class QuickStartTest {
+public class ParseFormBetaTest {
   private static final String PROJECT_ID = System.getenv("GCLOUD_PROJECT");
   private static final String INPUT_URI = "gs://cloud-samples-data/documentai/invoice.pdf";
 
@@ -53,12 +54,12 @@ public class QuickStartTest {
   }
 
   @Test
-  public void testQuickStart() throws IOException {
-    // parse a PDF document.
-    QuickStart.quickStart(PROJECT_ID,"us", INPUT_URI);
+  public void testParseForm() throws InterruptedException, ExecutionException, IOException {
+    // parse the GCS invoice as a form.
+    ParseFormBeta.parseForm(PROJECT_ID,"us", INPUT_URI);
     String got = bout.toString();
 
-    assertThat(got).contains("Entity");
+    assertThat(got).contains("Extracted form fields pair:");
   }
 
   @After

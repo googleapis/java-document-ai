@@ -14,22 +14,30 @@
  * limitations under the License.
  */
 
-package com.examples.documentai;
+package documentai.v1beta2;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertNotNull;
 
+import com.google.api.gax.paging.Page;
+import com.google.cloud.storage.Blob;
+import com.google.cloud.storage.Storage;
+import com.google.cloud.storage.StorageOptions;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ParseFormTest {
+public class BatchParseTableBetaTest {
   private static final String PROJECT_ID = System.getenv("GCLOUD_PROJECT");
   private static final String INPUT_URI = "gs://cloud-samples-data/documentai/invoice.pdf";
+  private static final String OUTPUT_PREFIX = String.format("%s", UUID.randomUUID());
+  private static final String OUTPUT_BUCKET_NAME = PROJECT_ID;
 
   private ByteArrayOutputStream bout;
   private PrintStream out;
@@ -46,6 +54,32 @@ public class ParseFormTest {
     requireEnvVar("GOOGLE_APPLICATION_CREDENTIALS");
   }
 
+  private static void cleanUpBucket() {
+    Storage storage = StorageOptions.getDefaultInstance().getService();
+    Page<Blob> blobs =
+        storage.list(
+            PROJECT_ID,
+            Storage.BlobListOption.currentDirectory(),
+            Storage.BlobListOption.prefix(OUTPUT_PREFIX));
+
+    deleteDirectory(storage, blobs);
+  }
+
+  private static void deleteDirectory(Storage storage, Page<Blob> blobs) {
+    for (Blob blob : blobs.iterateAll()) {
+      System.out.println(blob.getBlobId());
+      if (!blob.delete()) {
+        Page<Blob> subBlobs =
+            storage.list(
+                PROJECT_ID,
+                Storage.BlobListOption.currentDirectory(),
+                Storage.BlobListOption.prefix(blob.getName()));
+
+        deleteDirectory(storage, subBlobs);
+      }
+    }
+  }
+
   @Before
   public void setUp() {
     bout = new ByteArrayOutputStream();
@@ -54,16 +88,21 @@ public class ParseFormTest {
   }
 
   @Test
-  public void testParseForm() throws InterruptedException, ExecutionException, IOException {
-    // parse the GCS invoice as a form.
-    ParseForm.parseForm(PROJECT_ID,"us", INPUT_URI);
+  public void testBatchParseTable()
+      throws InterruptedException, ExecutionException, TimeoutException, IOException {
+    // parse the GCS invoice as a table.
+    BatchParseTableBeta.batchParseTableGcs(
+        PROJECT_ID, "us", OUTPUT_BUCKET_NAME, OUTPUT_PREFIX, INPUT_URI);
     String got = bout.toString();
 
-    assertThat(got).contains("Extracted form fields pair:");
+    assertThat(got).contains("Fetched file");
+    assertThat(got).contains("Results from first table processed:");
+    assertThat(got).contains("Header row");
   }
 
   @After
   public void tearDown() {
+    cleanUpBucket();
     System.setOut(null);
   }
 }

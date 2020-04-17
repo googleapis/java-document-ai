@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.examples.documentai;
+package documentai.v1beta2;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertNotNull;
@@ -26,7 +26,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class SetEndpointTest {
+public class QuickStartTest {
   private static final String PROJECT_ID = System.getenv("GCLOUD_PROJECT");
   private static final String INPUT_URI = "gs://cloud-samples-data/documentai/invoice.pdf";
 
@@ -53,9 +53,9 @@ public class SetEndpointTest {
   }
 
   @Test
-  public void testSetEndPoint() throws IOException {
-    // process a pdf in another region.
-    SetEndPoint.setEndpoint(PROJECT_ID,"eu", INPUT_URI);
+  public void testQuickStart() throws IOException {
+    // parse a PDF document.
+    QuickStart.quickStart(PROJECT_ID,"us", INPUT_URI);
     String got = bout.toString();
 
     assertThat(got).contains("Entity");

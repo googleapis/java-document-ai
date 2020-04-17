@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.examples.documentai;
+package documentai.v1beta2;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertNotNull;
@@ -33,7 +33,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class BatchParseFormTest {
+public class BatchParseFormBetaTest {
   private static final String PROJECT_ID = System.getenv("GCLOUD_PROJECT");
   private static final String INPUT_URI = "gs://cloud-samples-data/documentai/invoice.pdf";
   private static final String OUTPUT_PREFIX = String.format("%s", UUID.randomUUID());
@@ -91,13 +91,11 @@ public class BatchParseFormTest {
   public void testBatchParseForm()
       throws InterruptedException, ExecutionException, TimeoutException, IOException {
     // parse the GCS invoice as a form.
-    BatchParseForm.batchParseFormGcs(
+    BatchParseFormBeta.batchParseFormGcs(
         PROJECT_ID, "us", OUTPUT_BUCKET_NAME, OUTPUT_PREFIX, INPUT_URI);
     String got = bout.toString();
 
     assertThat(got).contains("Fetched file");
-    assertThat(got).contains("ADDRESS:");
-    assertThat(got).contains("BALANCE DUE");
   }
 
   @After

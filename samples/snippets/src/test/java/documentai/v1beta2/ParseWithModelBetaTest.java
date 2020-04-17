@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.examples.documentai;
+package documentai.v1beta2;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertNotNull;
@@ -26,7 +26,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ParseWithModelTest {
+public class ParseWithModelBetaTest {
   private static final String PROJECT_ID = System.getenv("GCLOUD_PROJECT");
   private static final String INPUT_URI = "gs://cloud-samples-data/documentai/invoice.pdf";
   private static final String AUTO_ML_MODEL_ID = "TCN6871084728972835631";
@@ -59,7 +59,7 @@ public class ParseWithModelTest {
     String model =
         String.format(
             "projects/%s/locations/us-central1/models/%s", PROJECT_ID, AUTO_ML_MODEL_ID);
-    ParseWithModel.parseWithModel(PROJECT_ID, "us", model, INPUT_URI);
+    ParseWithModelBeta.parseWithModel(PROJECT_ID, "us", model, INPUT_URI);
     String got = bout.toString();
 
     assertThat(got).contains("Label");

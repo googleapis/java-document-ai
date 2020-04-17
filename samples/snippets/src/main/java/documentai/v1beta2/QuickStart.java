@@ -14,41 +14,34 @@
  * limitations under the License.
  */
 
-package com.examples.documentai;
+package documentai.v1beta2;
 
-// [START documentai_set_endpoint]
+// [START documentai_quickstart_beta]
 
 import com.google.cloud.documentai.v1beta2.Document;
 import com.google.cloud.documentai.v1beta2.DocumentUnderstandingServiceClient;
-import com.google.cloud.documentai.v1beta2.DocumentUnderstandingServiceSettings;
 import com.google.cloud.documentai.v1beta2.GcsSource;
 import com.google.cloud.documentai.v1beta2.InputConfig;
 import com.google.cloud.documentai.v1beta2.ProcessDocumentRequest;
 import java.io.IOException;
 
-public class SetEndPoint {
+public class QuickStart {
 
-  public static void setEndpoint() throws IOException {
+  public static void quickStart() throws IOException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
     String location = "your-project-location"; // Format is "us" or "eu".
     String inputGcsUri = "gs://your-gcs-bucket/path/to/input/file.json";
-    setEndpoint(projectId, location, inputGcsUri);
+    quickStart(projectId, location, inputGcsUri);
   }
 
-  public static void setEndpoint(String projectId, String location, String inputGcsUri)
+  public static void quickStart(String projectId, String location, String inputGcsUri)
       throws IOException {
-    DocumentUnderstandingServiceSettings settings =
-        DocumentUnderstandingServiceSettings.newBuilder()
-            .setEndpoint("eu-documentai.googleapis.com:443")
-            .build();
-
     // Initialize client that will be used to send requests. This client only needs to be created
     // once, and can be reused for multiple requests. After completing all of your requests, call
     // the "close" method on the client to safely clean up any remaining background resources.
-    try (DocumentUnderstandingServiceClient client =
-        DocumentUnderstandingServiceClient.create(settings)) {
-      // Configure the request for processing the PDF
+    try (DocumentUnderstandingServiceClient client = DocumentUnderstandingServiceClient.create()) {
+      // Configure the request for processing a single document
       String parent = String.format("projects/%s/locations/%s", projectId, location);
 
       GcsSource uri = GcsSource.newBuilder().setUri(inputGcsUri).build();
@@ -56,8 +49,7 @@ public class SetEndPoint {
       // mime_type can be application/pdf, image/tiff,
       // and image/gif, or application/json
       InputConfig config =
-          InputConfig.newBuilder().setGcsSource(uri)
-                  .setMimeType("application/pdf").build();
+          InputConfig.newBuilder().setGcsSource(uri).setMimeType("application/pdf").build();
 
       ProcessDocumentRequest request =
           ProcessDocumentRequest.newBuilder().setParent(parent).setInputConfig(config).build();
@@ -83,4 +75,4 @@ public class SetEndPoint {
     return text.substring(startIdx, endIdx);
   }
 }
-// [END documentai_set_endpoint]
+// [END documentai_quickstart_beta]

@@ -27,7 +27,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ParseTableBetaTest {
-  private static final String PROJECT_ID = System.getenv("GCLOUD_PROJECT");
+  private static final String PROJECT_ID = System.getenv("GOOGLE_CLOUD_PROJECT");
   private static final String INPUT_URI = "gs://cloud-samples-data/documentai/invoice.pdf";
 
   private ByteArrayOutputStream bout;
@@ -41,7 +41,7 @@ public class ParseTableBetaTest {
 
   @Before
   public void checkRequirements() {
-    requireEnvVar("GCLOUD_PROJECT");
+    requireEnvVar("GOOGLE_CLOUD_PROJECT");
     requireEnvVar("GOOGLE_APPLICATION_CREDENTIALS");
   }
 

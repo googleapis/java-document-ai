@@ -34,7 +34,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class BatchParseFormBetaTest {
-  private static final String PROJECT_ID = System.getenv("GCLOUD_PROJECT");
+  private static final String PROJECT_ID = System.getenv("GOOGLE_CLOUD_PROJECT");
   private static final String INPUT_URI = "gs://cloud-samples-data/documentai/invoice.pdf";
   private static final String OUTPUT_PREFIX = String.format("%s", UUID.randomUUID());
   private static final String OUTPUT_BUCKET_NAME = PROJECT_ID;
@@ -50,7 +50,7 @@ public class BatchParseFormBetaTest {
 
   @Before
   public void checkRequirements() {
-    requireEnvVar("GCLOUD_PROJECT");
+    requireEnvVar("GOOGLE_CLOUD_PROJECT");
     requireEnvVar("GOOGLE_APPLICATION_CREDENTIALS");
   }
 

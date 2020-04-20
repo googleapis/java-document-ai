@@ -27,7 +27,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ParseWithModelBetaTest {
-  private static final String PROJECT_ID = System.getenv("AUTOML_PROJECT_ID");
+  private static final String PROJECT_ID = "java-docs-samples-testing"
   private static final String INPUT_URI = "gs://cloud-samples-data/documentai/invoice.pdf";
   private static final String AUTO_ML_MODEL_ID = "TCN6871084728972835631";
   private ByteArrayOutputStream bout;
@@ -42,7 +42,6 @@ public class ParseWithModelBetaTest {
 
   @Before
   public void checkRequirements() {
-    requireEnvVar("AUTOML_PROJECT_ID");
     requireEnvVar("GOOGLE_APPLICATION_CREDENTIALS");
   }
 

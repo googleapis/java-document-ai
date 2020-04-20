@@ -27,7 +27,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ParseWithModelBetaTest {
-  private static final String PROJECT_ID = "java-docs-samples-testing";
+  private static final String PROJECT_ID = System.getenv("GOOGLE_CLOUD_PROJECT");
+  private static final String AUTOML_PROJECT_ID = "java-docs-samples-testing";
   private static final String INPUT_URI = "gs://cloud-samples-data/documentai/invoice.pdf";
   private static final String AUTO_ML_MODEL_ID = "TCN6871084728972835631";
   private ByteArrayOutputStream bout;
@@ -42,6 +43,7 @@ public class ParseWithModelBetaTest {
 
   @Before
   public void checkRequirements() {
+    requireEnvVar("GOOGLE_CLOUD_PROJECT");
     requireEnvVar("GOOGLE_APPLICATION_CREDENTIALS");
   }
 
@@ -57,7 +59,7 @@ public class ParseWithModelBetaTest {
     // parse a PDF using AutoML model.
     String model =
         String.format(
-            "projects/%s/locations/us-central1/models/%s", PROJECT_ID, AUTO_ML_MODEL_ID);
+            "projects/%s/locations/us-central1/models/%s", AUTOML_PROJECT_ID, AUTO_ML_MODEL_ID);
     ParseWithModelBeta.parseWithModel(PROJECT_ID, "us", model, INPUT_URI);
     String got = bout.toString();
 

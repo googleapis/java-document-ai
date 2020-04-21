@@ -54,7 +54,7 @@ public class SetEndpointTest {
 
   @Test
   public void testSetEndPoint() throws IOException {
-    // process a pdf in another region.
+    // process a pdf in another endpoint.
     SetEndPointBeta.setEndpoint(PROJECT_ID,"eu", INPUT_URI);
     String got = bout.toString();
 

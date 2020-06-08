@@ -31,3 +31,5 @@ do
     --secret ${key} > \
     "${SECRET_LOCATION}/${key}"
 done
+echo $(realpath ${SECRET_LOCATION})
+ls ${SECRET_LOCATION}

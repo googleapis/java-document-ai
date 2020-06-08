@@ -19,7 +19,6 @@ set -eo pipefail
 # kokoro-trampoline@cloud-devrel-kokoro-resources.iam.gserviceaccount.com
 SECRET_LOCATION="${KOKORO_GFILE_DIR}/secret_manager"
 mkdir -p ${SECRET_LOCATION}
-ls ${KOKORO_GFILE_DIR}
 for key in $(echo ${SECRET_MANAGER_KEYS} | sed "s/,/ /g")
 do
   docker run --entrypoint=gcloud \
@@ -31,5 +30,3 @@ do
     --secret ${key} > \
     "${SECRET_LOCATION}/${key}"
 done
-echo $(realpath ${SECRET_LOCATION})
-ls ${SECRET_LOCATION}

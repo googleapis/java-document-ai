@@ -21,9 +21,7 @@ SECRET_LOCATION="${KOKORO_GFILE_DIR}/secret_manager"
 mkdir -p ${SECRET_LOCATION}
 for key in $(echo ${SECRET_MANAGER_KEYS} | sed "s/,/ /g")
 do
-  docker run \
-    --network=host \
-    --entrypoint=gcloud \
+  docker run --entrypoint=gcloud \
     --volume=${KOKORO_GFILE_DIR}:${KOKORO_GFILE_DIR} \
     gcr.io/google.com/cloudsdktool/cloud-sdk \
     secrets versions access latest \

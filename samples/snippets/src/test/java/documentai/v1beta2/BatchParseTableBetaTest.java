@@ -31,6 +31,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class BatchParseTableBetaTest {
@@ -88,6 +89,8 @@ public class BatchParseTableBetaTest {
   }
 
   @Test
+  // https://github.com/googleapis/java-document-ai/issues/207
+  @Ignore
   public void testBatchParseTable()
       throws InterruptedException, ExecutionException, TimeoutException, IOException {
     // parse the GCS invoice as a table.

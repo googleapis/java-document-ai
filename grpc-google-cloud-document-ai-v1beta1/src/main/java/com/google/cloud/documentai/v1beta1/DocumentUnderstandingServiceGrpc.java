@@ -22,7 +22,15 @@ import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
-/** */
+/**
+ *
+ *
+ * <pre>
+ * Service to parse structured information from unstructured or semi-structured
+ * documents using state-of-the-art Google AI such as natural language,
+ * computer vision, and translation.
+ * </pre>
+ */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler",
     comments = "Source: google/cloud/documentai/v1beta1/document_understanding.proto")
@@ -127,11 +135,25 @@ public final class DocumentUnderstandingServiceGrpc {
     return DocumentUnderstandingServiceFutureStub.newStub(factory, channel);
   }
 
-  /** */
+  /**
+   *
+   *
+   * <pre>
+   * Service to parse structured information from unstructured or semi-structured
+   * documents using state-of-the-art Google AI such as natural language,
+   * computer vision, and translation.
+   * </pre>
+   */
   public abstract static class DocumentUnderstandingServiceImplBase
       implements io.grpc.BindableService {
 
-    /** */
+    /**
+     *
+     *
+     * <pre>
+     * LRO endpoint to batch process many documents.
+     * </pre>
+     */
     public void batchProcessDocuments(
         com.google.cloud.documentai.v1beta1.BatchProcessDocumentsRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
@@ -151,7 +173,15 @@ public final class DocumentUnderstandingServiceGrpc {
     }
   }
 
-  /** */
+  /**
+   *
+   *
+   * <pre>
+   * Service to parse structured information from unstructured or semi-structured
+   * documents using state-of-the-art Google AI such as natural language,
+   * computer vision, and translation.
+   * </pre>
+   */
   public static final class DocumentUnderstandingServiceStub
       extends io.grpc.stub.AbstractAsyncStub<DocumentUnderstandingServiceStub> {
     private DocumentUnderstandingServiceStub(
@@ -165,7 +195,13 @@ public final class DocumentUnderstandingServiceGrpc {
       return new DocumentUnderstandingServiceStub(channel, callOptions);
     }
 
-    /** */
+    /**
+     *
+     *
+     * <pre>
+     * LRO endpoint to batch process many documents.
+     * </pre>
+     */
     public void batchProcessDocuments(
         com.google.cloud.documentai.v1beta1.BatchProcessDocumentsRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
@@ -176,7 +212,15 @@ public final class DocumentUnderstandingServiceGrpc {
     }
   }
 
-  /** */
+  /**
+   *
+   *
+   * <pre>
+   * Service to parse structured information from unstructured or semi-structured
+   * documents using state-of-the-art Google AI such as natural language,
+   * computer vision, and translation.
+   * </pre>
+   */
   public static final class DocumentUnderstandingServiceBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<DocumentUnderstandingServiceBlockingStub> {
     private DocumentUnderstandingServiceBlockingStub(
@@ -190,7 +234,13 @@ public final class DocumentUnderstandingServiceGrpc {
       return new DocumentUnderstandingServiceBlockingStub(channel, callOptions);
     }
 
-    /** */
+    /**
+     *
+     *
+     * <pre>
+     * LRO endpoint to batch process many documents.
+     * </pre>
+     */
     public com.google.longrunning.Operation batchProcessDocuments(
         com.google.cloud.documentai.v1beta1.BatchProcessDocumentsRequest request) {
       return blockingUnaryCall(
@@ -198,7 +248,15 @@ public final class DocumentUnderstandingServiceGrpc {
     }
   }
 
-  /** */
+  /**
+   *
+   *
+   * <pre>
+   * Service to parse structured information from unstructured or semi-structured
+   * documents using state-of-the-art Google AI such as natural language,
+   * computer vision, and translation.
+   * </pre>
+   */
   public static final class DocumentUnderstandingServiceFutureStub
       extends io.grpc.stub.AbstractFutureStub<DocumentUnderstandingServiceFutureStub> {
     private DocumentUnderstandingServiceFutureStub(
@@ -212,7 +270,13 @@ public final class DocumentUnderstandingServiceGrpc {
       return new DocumentUnderstandingServiceFutureStub(channel, callOptions);
     }
 
-    /** */
+    /**
+     *
+     *
+     * <pre>
+     * LRO endpoint to batch process many documents.
+     * </pre>
+     */
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation>
         batchProcessDocuments(
             com.google.cloud.documentai.v1beta1.BatchProcessDocumentsRequest request) {

@@ -22,16 +22,7 @@ import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
-/**
- *
- *
- * <pre>
- * Service to call Cloud DocumentAI to process documents according to the
- * processor's definition. Processors are built using state-of-the-art Google
- * AI such as natural language, computer vision, and translation to extract
- * structured information from unstructured or semi-structured documents.
- * </pre>
- */
+/** */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler",
     comments = "Source: google/cloud/documentai/v1beta3/document_processor_service.proto")
@@ -230,25 +221,10 @@ public final class DocumentProcessorServiceGrpc {
     return DocumentProcessorServiceFutureStub.newStub(factory, channel);
   }
 
-  /**
-   *
-   *
-   * <pre>
-   * Service to call Cloud DocumentAI to process documents according to the
-   * processor's definition. Processors are built using state-of-the-art Google
-   * AI such as natural language, computer vision, and translation to extract
-   * structured information from unstructured or semi-structured documents.
-   * </pre>
-   */
+  /** */
   public abstract static class DocumentProcessorServiceImplBase implements io.grpc.BindableService {
 
-    /**
-     *
-     *
-     * <pre>
-     * Processes a single document.
-     * </pre>
-     */
+    /** */
     public void processDocument(
         com.google.cloud.documentai.v1beta3.ProcessRequest request,
         io.grpc.stub.StreamObserver<com.google.cloud.documentai.v1beta3.ProcessResponse>
@@ -256,28 +232,14 @@ public final class DocumentProcessorServiceGrpc {
       asyncUnimplementedUnaryCall(getProcessDocumentMethod(), responseObserver);
     }
 
-    /**
-     *
-     *
-     * <pre>
-     * LRO endpoint to batch process many documents. The output is written
-     * to Cloud Storage as JSON in the [Document] format.
-     * </pre>
-     */
+    /** */
     public void batchProcessDocuments(
         com.google.cloud.documentai.v1beta3.BatchProcessRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnimplementedUnaryCall(getBatchProcessDocumentsMethod(), responseObserver);
     }
 
-    /**
-     *
-     *
-     * <pre>
-     * Send a document for Human Review. The input document should be processed by
-     * the specified processor.
-     * </pre>
-     */
+    /** */
     public void reviewDocument(
         com.google.cloud.documentai.v1beta3.ReviewDocumentRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
@@ -310,16 +272,7 @@ public final class DocumentProcessorServiceGrpc {
     }
   }
 
-  /**
-   *
-   *
-   * <pre>
-   * Service to call Cloud DocumentAI to process documents according to the
-   * processor's definition. Processors are built using state-of-the-art Google
-   * AI such as natural language, computer vision, and translation to extract
-   * structured information from unstructured or semi-structured documents.
-   * </pre>
-   */
+  /** */
   public static final class DocumentProcessorServiceStub
       extends io.grpc.stub.AbstractAsyncStub<DocumentProcessorServiceStub> {
     private DocumentProcessorServiceStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
@@ -332,13 +285,7 @@ public final class DocumentProcessorServiceGrpc {
       return new DocumentProcessorServiceStub(channel, callOptions);
     }
 
-    /**
-     *
-     *
-     * <pre>
-     * Processes a single document.
-     * </pre>
-     */
+    /** */
     public void processDocument(
         com.google.cloud.documentai.v1beta3.ProcessRequest request,
         io.grpc.stub.StreamObserver<com.google.cloud.documentai.v1beta3.ProcessResponse>
@@ -349,14 +296,7 @@ public final class DocumentProcessorServiceGrpc {
           responseObserver);
     }
 
-    /**
-     *
-     *
-     * <pre>
-     * LRO endpoint to batch process many documents. The output is written
-     * to Cloud Storage as JSON in the [Document] format.
-     * </pre>
-     */
+    /** */
     public void batchProcessDocuments(
         com.google.cloud.documentai.v1beta3.BatchProcessRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
@@ -366,14 +306,7 @@ public final class DocumentProcessorServiceGrpc {
           responseObserver);
     }
 
-    /**
-     *
-     *
-     * <pre>
-     * Send a document for Human Review. The input document should be processed by
-     * the specified processor.
-     * </pre>
-     */
+    /** */
     public void reviewDocument(
         com.google.cloud.documentai.v1beta3.ReviewDocumentRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
@@ -384,16 +317,7 @@ public final class DocumentProcessorServiceGrpc {
     }
   }
 
-  /**
-   *
-   *
-   * <pre>
-   * Service to call Cloud DocumentAI to process documents according to the
-   * processor's definition. Processors are built using state-of-the-art Google
-   * AI such as natural language, computer vision, and translation to extract
-   * structured information from unstructured or semi-structured documents.
-   * </pre>
-   */
+  /** */
   public static final class DocumentProcessorServiceBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<DocumentProcessorServiceBlockingStub> {
     private DocumentProcessorServiceBlockingStub(
@@ -407,56 +331,27 @@ public final class DocumentProcessorServiceGrpc {
       return new DocumentProcessorServiceBlockingStub(channel, callOptions);
     }
 
-    /**
-     *
-     *
-     * <pre>
-     * Processes a single document.
-     * </pre>
-     */
+    /** */
     public com.google.cloud.documentai.v1beta3.ProcessResponse processDocument(
         com.google.cloud.documentai.v1beta3.ProcessRequest request) {
       return blockingUnaryCall(getChannel(), getProcessDocumentMethod(), getCallOptions(), request);
     }
 
-    /**
-     *
-     *
-     * <pre>
-     * LRO endpoint to batch process many documents. The output is written
-     * to Cloud Storage as JSON in the [Document] format.
-     * </pre>
-     */
+    /** */
     public com.google.longrunning.Operation batchProcessDocuments(
         com.google.cloud.documentai.v1beta3.BatchProcessRequest request) {
       return blockingUnaryCall(
           getChannel(), getBatchProcessDocumentsMethod(), getCallOptions(), request);
     }
 
-    /**
-     *
-     *
-     * <pre>
-     * Send a document for Human Review. The input document should be processed by
-     * the specified processor.
-     * </pre>
-     */
+    /** */
     public com.google.longrunning.Operation reviewDocument(
         com.google.cloud.documentai.v1beta3.ReviewDocumentRequest request) {
       return blockingUnaryCall(getChannel(), getReviewDocumentMethod(), getCallOptions(), request);
     }
   }
 
-  /**
-   *
-   *
-   * <pre>
-   * Service to call Cloud DocumentAI to process documents according to the
-   * processor's definition. Processors are built using state-of-the-art Google
-   * AI such as natural language, computer vision, and translation to extract
-   * structured information from unstructured or semi-structured documents.
-   * </pre>
-   */
+  /** */
   public static final class DocumentProcessorServiceFutureStub
       extends io.grpc.stub.AbstractFutureStub<DocumentProcessorServiceFutureStub> {
     private DocumentProcessorServiceFutureStub(
@@ -470,13 +365,7 @@ public final class DocumentProcessorServiceGrpc {
       return new DocumentProcessorServiceFutureStub(channel, callOptions);
     }
 
-    /**
-     *
-     *
-     * <pre>
-     * Processes a single document.
-     * </pre>
-     */
+    /** */
     public com.google.common.util.concurrent.ListenableFuture<
             com.google.cloud.documentai.v1beta3.ProcessResponse>
         processDocument(com.google.cloud.documentai.v1beta3.ProcessRequest request) {
@@ -484,28 +373,14 @@ public final class DocumentProcessorServiceGrpc {
           getChannel().newCall(getProcessDocumentMethod(), getCallOptions()), request);
     }
 
-    /**
-     *
-     *
-     * <pre>
-     * LRO endpoint to batch process many documents. The output is written
-     * to Cloud Storage as JSON in the [Document] format.
-     * </pre>
-     */
+    /** */
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation>
         batchProcessDocuments(com.google.cloud.documentai.v1beta3.BatchProcessRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getBatchProcessDocumentsMethod(), getCallOptions()), request);
     }
 
-    /**
-     *
-     *
-     * <pre>
-     * Send a document for Human Review. The input document should be processed by
-     * the specified processor.
-     * </pre>
-     */
+    /** */
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation>
         reviewDocument(com.google.cloud.documentai.v1beta3.ReviewDocumentRequest request) {
       return futureUnaryCall(

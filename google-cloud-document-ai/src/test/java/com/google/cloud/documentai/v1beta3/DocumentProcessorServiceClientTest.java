@@ -85,7 +85,7 @@ public class DocumentProcessorServiceClientTest {
     ProcessResponse expectedResponse =
         ProcessResponse.newBuilder()
             .setDocument(Document.newBuilder().build())
-            .setHumanReviewOperation("human_review_operation2074827282")
+            .setHumanReviewOperation("humanReviewOperation1807415298")
             .build();
     mockDocumentProcessorService.addResponse(expectedResponse);
 
@@ -124,7 +124,7 @@ public class DocumentProcessorServiceClientTest {
     ProcessResponse expectedResponse =
         ProcessResponse.newBuilder()
             .setDocument(Document.newBuilder().build())
-            .setHumanReviewOperation("human_review_operation2074827282")
+            .setHumanReviewOperation("humanReviewOperation1807415298")
             .build();
     mockDocumentProcessorService.addResponse(expectedResponse);
 
@@ -247,7 +247,7 @@ public class DocumentProcessorServiceClientTest {
   @Test
   public void reviewDocumentTest() throws Exception {
     ReviewDocumentResponse expectedResponse =
-        ReviewDocumentResponse.newBuilder().setGcsDestination("gcs_destination714819302").build();
+        ReviewDocumentResponse.newBuilder().setGcsDestination("gcsDestination-1612392329").build();
     Operation resultOperation =
         Operation.newBuilder()
             .setName("reviewDocumentTest")
@@ -293,7 +293,7 @@ public class DocumentProcessorServiceClientTest {
   @Test
   public void reviewDocumentTest2() throws Exception {
     ReviewDocumentResponse expectedResponse =
-        ReviewDocumentResponse.newBuilder().setGcsDestination("gcs_destination714819302").build();
+        ReviewDocumentResponse.newBuilder().setGcsDestination("gcsDestination-1612392329").build();
     Operation resultOperation =
         Operation.newBuilder()
             .setName("reviewDocumentTest")
@@ -302,7 +302,7 @@ public class DocumentProcessorServiceClientTest {
             .build();
     mockDocumentProcessorService.addResponse(resultOperation);
 
-    String humanReviewConfig = "human_review_config-832162185";
+    String humanReviewConfig = "humanReviewConfig-620962169";
 
     ReviewDocumentResponse actualResponse = client.reviewDocumentAsync(humanReviewConfig).get();
     Assert.assertEquals(expectedResponse, actualResponse);
@@ -324,7 +324,7 @@ public class DocumentProcessorServiceClientTest {
     mockDocumentProcessorService.addException(exception);
 
     try {
-      String humanReviewConfig = "human_review_config-832162185";
+      String humanReviewConfig = "humanReviewConfig-620962169";
       client.reviewDocumentAsync(humanReviewConfig).get();
       Assert.fail("No exception raised");
     } catch (ExecutionException e) {

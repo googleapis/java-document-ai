@@ -111,12 +111,22 @@ public class GrpcDocumentProcessorServiceStub extends DocumentProcessorServiceSt
         DocumentProcessorServiceStubSettings.newBuilder().build(), clientContext, callableFactory);
   }
 
+  /**
+   * Constructs an instance of GrpcDocumentProcessorServiceStub, using the given settings. This is
+   * protected so that it is easy to make a subclass, but otherwise, the static factory methods
+   * should be preferred.
+   */
   protected GrpcDocumentProcessorServiceStub(
       DocumentProcessorServiceStubSettings settings, ClientContext clientContext)
       throws IOException {
     this(settings, clientContext, new GrpcDocumentProcessorServiceCallableFactory());
   }
 
+  /**
+   * Constructs an instance of GrpcDocumentProcessorServiceStub, using the given settings. This is
+   * protected so that it is easy to make a subclass, but otherwise, the static factory methods
+   * should be preferred.
+   */
   protected GrpcDocumentProcessorServiceStub(
       DocumentProcessorServiceStubSettings settings,
       ClientContext clientContext,

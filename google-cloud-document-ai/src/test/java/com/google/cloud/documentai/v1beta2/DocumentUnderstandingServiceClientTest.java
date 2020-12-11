@@ -134,7 +134,7 @@ public class DocumentUnderstandingServiceClientTest {
   public void processDocumentTest() throws Exception {
     Document expectedResponse =
         Document.newBuilder()
-            .setMimeType("mime_type-196041627")
+            .setMimeType("mimeType-1392120434")
             .setText("text3556653")
             .addAllTextStyles(new ArrayList<Document.Style>())
             .addAllPages(new ArrayList<Document.Page>())
@@ -150,7 +150,7 @@ public class DocumentUnderstandingServiceClientTest {
             .setParent("parent-995424086")
             .setInputConfig(InputConfig.newBuilder().build())
             .setOutputConfig(OutputConfig.newBuilder().build())
-            .setDocumentType("document_type1585573854")
+            .setDocumentType("documentType-1473196299")
             .setTableExtractionParams(TableExtractionParams.newBuilder().build())
             .setFormExtractionParams(FormExtractionParams.newBuilder().build())
             .setEntityExtractionParams(EntityExtractionParams.newBuilder().build())
@@ -193,7 +193,7 @@ public class DocumentUnderstandingServiceClientTest {
               .setParent("parent-995424086")
               .setInputConfig(InputConfig.newBuilder().build())
               .setOutputConfig(OutputConfig.newBuilder().build())
-              .setDocumentType("document_type1585573854")
+              .setDocumentType("documentType-1473196299")
               .setTableExtractionParams(TableExtractionParams.newBuilder().build())
               .setFormExtractionParams(FormExtractionParams.newBuilder().build())
               .setEntityExtractionParams(EntityExtractionParams.newBuilder().build())

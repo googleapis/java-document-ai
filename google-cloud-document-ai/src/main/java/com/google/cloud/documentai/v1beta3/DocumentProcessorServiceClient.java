@@ -271,8 +271,8 @@ public class DocumentProcessorServiceClient implements BackgroundResource {
    * Send a document for Human Review. The input document should be processed by the specified
    * processor.
    *
-   * @param human_review_config Required. The resource name of the HumanReviewConfig that the
-   *     document will be reviewed with.
+   * @param humanReviewConfig Required. The resource name of the HumanReviewConfig that the document
+   *     will be reviewed with.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final OperationFuture<ReviewDocumentResponse, ReviewDocumentOperationMetadata>
@@ -289,8 +289,8 @@ public class DocumentProcessorServiceClient implements BackgroundResource {
    * Send a document for Human Review. The input document should be processed by the specified
    * processor.
    *
-   * @param human_review_config Required. The resource name of the HumanReviewConfig that the
-   *     document will be reviewed with.
+   * @param humanReviewConfig Required. The resource name of the HumanReviewConfig that the document
+   *     will be reviewed with.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final OperationFuture<ReviewDocumentResponse, ReviewDocumentOperationMetadata>

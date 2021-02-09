@@ -24,6 +24,7 @@ import com.google.cloud.documentai.v1beta2.BatchProcessDocumentsRequest;
 import com.google.cloud.documentai.v1beta2.BatchProcessDocumentsResponse;
 import com.google.cloud.documentai.v1beta2.Document;
 import com.google.cloud.documentai.v1beta2.DocumentUnderstandingServiceClient;
+import com.google.cloud.documentai.v1beta2.DocumentUnderstandingServiceSettings;
 import com.google.cloud.documentai.v1beta2.FormExtractionParams;
 import com.google.cloud.documentai.v1beta2.GcsDestination;
 import com.google.cloud.documentai.v1beta2.GcsSource;
@@ -104,15 +105,15 @@ public class BatchParseFormBeta {
       // and image/gif, or application/json
       InputConfig config =
           InputConfig.newBuilder().setGcsSource(inputUri)
-                  .setMimeType("application/pdf").build();
+              .setMimeType("application/pdf").build();
 
       GcsDestination gcsDestination = GcsDestination.newBuilder()
-              .setUri(String.format("gs://%s/%s", outputGcsBucketName, outputGcsPrefix)).build();
+          .setUri(String.format("gs://%s/%s", outputGcsBucketName, outputGcsPrefix)).build();
 
       OutputConfig outputConfig =  OutputConfig.newBuilder()
-              .setGcsDestination(gcsDestination)
-              .setPagesPerShard(1)
-              .build();
+          .setGcsDestination(gcsDestination)
+          .setPagesPerShard(1)
+          .build();
 
       ProcessDocumentRequest request =
           ProcessDocumentRequest.newBuilder()
@@ -165,13 +166,15 @@ public class BatchParseFormBeta {
           String text = document.getText();
 
           // Process the output.
-          Document.Page page1 = document.getPages(0);
-          for (Document.Page.FormField field : page1.getFormFieldsList()) {
-            String fieldName = getText(field.getFieldName(), text);
-            String fieldValue = getText(field.getFieldValue(), text);
+          if(document.getPagesCount() > 0 ) {
+            Document.Page page1 = document.getPages(0);
+            for (Document.Page.FormField field : page1.getFormFieldsList()) {
+              String fieldName = getText(field.getFieldName(), text);
+              String fieldValue = getText(field.getFieldValue(), text);
 
-            System.out.println("Extracted form fields pair:");
-            System.out.printf("\t(%s, %s))", fieldName, fieldValue);
+              System.out.println("Extracted form fields pair:");
+              System.out.printf("\t(%s, %s))", fieldName, fieldValue);
+            }
           }
 
           // Clean up temp file.

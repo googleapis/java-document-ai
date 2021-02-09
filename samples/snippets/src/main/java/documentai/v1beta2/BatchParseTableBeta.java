@@ -165,17 +165,15 @@ public class BatchParseTableBeta {
           String text = document.getText();
 
           // Process the output.
-          if(document.getPagesCount() > 0) {
+          if (document.getPagesCount() > 0) {
             Document.Page page1 = document.getPages(0);
-            if(page1.getTablesCount() > 0 && page1.getDetectedLanguagesCount() > 0) {
+            if (page1.getTablesCount() > 0) {
               Document.Page.Table table = page1.getTables(0);
 
               System.out.println("Results from first table processed:");
-              System.out.println(
-                  "First detected language: " + page1.getDetectedLanguages(0).getLanguageCode());
               System.out.println("Header row:");
 
-              if(table.getHeaderRowsCount() > 0) {
+              if (table.getHeaderRowsCount() > 0) {
                 Document.Page.Table.TableRow headerRow = table.getHeaderRows(0);
 
                 for (Document.Page.Table.TableCell tableCell : headerRow.getCellsList()) {

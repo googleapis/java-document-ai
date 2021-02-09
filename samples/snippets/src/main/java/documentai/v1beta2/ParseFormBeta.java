@@ -90,7 +90,7 @@ public class ParseFormBeta {
       String text = response.getText();
 
       // Process the output
-      if(response.getPagesCount() > 0 ) {
+      if (response.getPagesCount() > 0) {
         Document.Page page1 = response.getPages(0);
         for (Document.Page.FormField field : page1.getFormFieldsList()) {
           String fieldName = getText(field.getFieldName(), text);

@@ -94,9 +94,9 @@ public class ParseTableBeta {
       String text = response.getText();
 
       // Get the first table in the document
-      if(response.getPagesCount() > 0) {
+      if (response.getPagesCount() > 0) {
         Document.Page page1 = response.getPages(0);
-        if(page1.getTablesCount() > 0 ) {
+        if (page1.getTablesCount() > 0) {
           Document.Page.Table table = page1.getTables(0);
 
           System.out.println("Results from first table processed:");

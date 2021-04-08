@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package documentai.v1beta2;
+package documentai.v1beta3;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertNotNull;
@@ -22,13 +22,18 @@ import static org.junit.Assert.assertNotNull;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 public class SetEndpointTest {
   private static final String PROJECT_ID = System.getenv("GOOGLE_CLOUD_PROJECT");
-  private static final String INPUT_URI = "gs://cloud-samples-data/documentai/invoice.pdf";
+  private static final String INPUT_URI = "resources/invoice.pdf";
+  private static final String PROCESSOR_ID = "88541adc6eeec481";
+
 
   private ByteArrayOutputStream bout;
   private PrintStream out;
@@ -53,9 +58,9 @@ public class SetEndpointTest {
   }
 
   @Test
-  public void testSetEndPoint() throws IOException {
+  public void testSetEndPoint() throws IOException, InterruptedException, ExecutionException, TimeoutException {
     // process a pdf in different region.
-    SetEndPointBeta.setEndpoint(PROJECT_ID, "eu", INPUT_URI);
+    SetEndPointBeta.setEndPoint(PROJECT_ID, "eu", PROCESSOR_ID, INPUT_URI);
     String got = bout.toString();
 
     assertThat(got).contains("Entity");

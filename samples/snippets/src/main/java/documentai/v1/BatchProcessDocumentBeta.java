@@ -14,18 +14,17 @@
  * limitations under the License.
  */
 
-package documentai.v1beta3;
+package documentai.v1;
 
 // [START documentai_batch_process_document]
 
 import com.google.api.gax.longrunning.OperationFuture;
 import com.google.api.gax.paging.Page;
-import com.google.api.gax.rpc.UnknownException;
-import com.google.cloud.documentai.v1beta3.BatchProcessMetadata;
-import com.google.cloud.documentai.v1beta3.BatchProcessRequest;
-import com.google.cloud.documentai.v1beta3.BatchProcessResponse;
-import com.google.cloud.documentai.v1beta3.Document;
-import com.google.cloud.documentai.v1beta3.DocumentProcessorServiceClient;
+import com.google.cloud.documentai.v1.BatchProcessMetadata;
+import com.google.cloud.documentai.v1.BatchProcessRequest;
+import com.google.cloud.documentai.v1.BatchProcessResponse;
+import com.google.cloud.documentai.v1.Document;
+import com.google.cloud.documentai.v1.DocumentProcessorServiceClient;
 import com.google.cloud.storage.Blob;
 import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.Bucket;

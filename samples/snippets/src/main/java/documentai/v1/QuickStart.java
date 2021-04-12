@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package documentai.v1beta3;
+package documentai.v1;
 
-// [START documentai_process_document]
+// [START documentai_quickstart]
 
 import com.google.cloud.documentai.v1beta3.Document;
 import com.google.cloud.documentai.v1beta3.DocumentProcessorServiceClient;
@@ -30,18 +30,18 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
-public class ProcessDocumentBeta {
-  public static void processDocument()
+public class QuickStart {
+  public static void quickStart()
       throws IOException, InterruptedException, ExecutionException, TimeoutException {
     // TODO(developer): Replace these variables before running the sample.
     String projectId = "your-project-id";
     String location = "your-project-location"; // Format is "us" or "eu".
     String processerId = "your-processor-id";
     String filePath = "path/to/input/file.pdf";
-    processDocument(projectId, location, processerId, filePath);
+    quickStart(projectId, location, processerId, filePath);
   }
 
-  public static void processDocument(
+  public static void quickStart(
       String projectId, String location, String processorId, String filePath)
       throws IOException, InterruptedException, ExecutionException, TimeoutException {
     // Initialize client that will be used to send requests. This client only needs to be created
@@ -83,19 +83,6 @@ public class ProcessDocumentBeta {
         String paragraphText = getText(paragraph.getLayout().getTextAnchor(), text);
         System.out.printf("Paragraph text:\n%s\n", paragraphText);
       }
-
-      // Form parsing provides additional output about
-      // form-formatted PDFs. You  must create a form
-      // processor in the Cloud Console to see full field details.
-      System.out.println("The following form key/value pairs were detected:");
-
-      for (Document.Page.FormField field : firstPage.getFormFieldsList()) {
-        String fieldName = getText(field.getFieldName().getTextAnchor(), text);
-        String fieldValue = getText(field.getFieldValue().getTextAnchor(), text);
-
-        System.out.println("Extracted form fields pair:");
-        System.out.printf("\t(%s, %s))\n", fieldName, fieldValue);
-      }
     }
   }
 
@@ -109,4 +96,4 @@ public class ProcessDocumentBeta {
     return "[NO TEXT]";
   }
 }
-// [END documentai_process_document]
+// [END documentai_quickstart]

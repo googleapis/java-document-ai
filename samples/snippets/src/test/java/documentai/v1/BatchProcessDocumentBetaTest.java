@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package documentai.v1beta3;
+package documentai.v1;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertNotNull;

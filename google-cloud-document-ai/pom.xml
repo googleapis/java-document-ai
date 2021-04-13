@@ -100,7 +100,7 @@
       <groupId>com.google.api.grpc</groupId>
       <artifactId>grpc-google-cloud-document-ai-v1</artifactId>
       <scope>test</scope>
-    </dependency>`
+    </dependency>
     <!-- Need testing utility classes for generated gRPC clients tests -->
     <dependency>
       <groupId>com.google.api</groupId>

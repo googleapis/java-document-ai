@@ -75,6 +75,11 @@
       </dependency>
       <dependency>
         <groupId>com.google.api.grpc</groupId>
+        <artifactId>proto-google-cloud-document-ai-v1</artifactId>
+        <version>0.5.1-SNAPSHOT</version> <!-- {x-version-update:proto-google-cloud-document-ai-v1beta3:current} -->
+      </dependency>
+      <dependency>
+        <groupId>com.google.api.grpc</groupId>
         <artifactId>grpc-google-cloud-document-ai-v1beta1</artifactId>
         <version>0.5.1-SNAPSHOT</version> <!-- {x-version-update:grpc-google-cloud-document-ai-v1beta1:current} -->
       </dependency>
@@ -86,6 +91,11 @@
       <dependency>
         <groupId>com.google.api.grpc</groupId>
         <artifactId>grpc-google-cloud-document-ai-v1beta3</artifactId>
+        <version>0.5.1-SNAPSHOT</version> <!-- {x-version-update:grpc-google-cloud-document-ai-v1beta3:current} -->
+      </dependency>
+      <dependency>
+        <groupId>com.google.api.grpc</groupId>
+        <artifactId>grpc-google-cloud-document-ai-v1</artifactId>
         <version>0.5.1-SNAPSHOT</version> <!-- {x-version-update:grpc-google-cloud-document-ai-v1beta3:current} -->
       </dependency>
       <dependency>

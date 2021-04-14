@@ -31,4 +31,13 @@
     <className>com/google/cloud/documentai/v1beta3/Document*</className>
     <field>*FIELD_NUMBER</field>
   </difference>
+  <difference>
+  <differenceType>6011</differenceType>
+  <className>com/google/cloud/documentai/v1beta3/Document*</className>
+  <field>*EVAL_SKIPPED_VALUE</field>
+  <difference>
+    <differenceType>6001</differenceType>
+    <className>com/google/cloud/documentai/v1beta3/Document*</className>
+    <field>*EVAL_SKIPPED</field>
+  </difference>
 </differences>

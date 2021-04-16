@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package documentai.v1beta3;
+package documentai.v1;
 
 // [START documentai_batch_process_document]
 

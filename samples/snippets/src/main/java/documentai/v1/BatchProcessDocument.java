@@ -20,11 +20,16 @@ package documentai.v1;
 
 import com.google.api.gax.longrunning.OperationFuture;
 import com.google.api.gax.paging.Page;
-import com.google.cloud.documentai.v1beta3.BatchProcessMetadata;
-import com.google.cloud.documentai.v1beta3.BatchProcessRequest;
-import com.google.cloud.documentai.v1beta3.BatchProcessResponse;
-import com.google.cloud.documentai.v1beta3.Document;
-import com.google.cloud.documentai.v1beta3.DocumentProcessorServiceClient;
+import com.google.cloud.documentai.v1.BatchDocumentsInputConfig;
+import com.google.cloud.documentai.v1.BatchProcessMetadata;
+import com.google.cloud.documentai.v1.BatchProcessRequest;
+import com.google.cloud.documentai.v1.BatchProcessResponse;
+import com.google.cloud.documentai.v1.Document;
+import com.google.cloud.documentai.v1.DocumentOutputConfig;
+import com.google.cloud.documentai.v1.DocumentOutputConfig.GcsOutputConfig;
+import com.google.cloud.documentai.v1.DocumentProcessorServiceClient;
+import com.google.cloud.documentai.v1.GcsDocument;
+import com.google.cloud.documentai.v1.GcsDocuments;
 import com.google.cloud.storage.Blob;
 import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.Bucket;
@@ -71,24 +76,36 @@ public class BatchProcessDocument {
       String name =
           String.format("projects/%s/locations/%s/processors/%s", projectId, location, processorId);
 
-      BatchProcessRequest.BatchInputConfig batchInputConfig =
-          BatchProcessRequest.BatchInputConfig.newBuilder()
-              .setGcsSource(gcsInputUri)
+      GcsDocument gcsDocument = GcsDocument.newBuilder()
+              .setGcsUri(gcsInputUri)
               .setMimeType("application/pdf")
+              .build();
+      
+      GcsDocuments gcsDocuments = GcsDocuments.newBuilder()
+              .addDocuments(gcsDocument)
+              .build();
+      
+      BatchDocumentsInputConfig inputConfig = BatchDocumentsInputConfig.newBuilder()
+              .setGcsDocuments(gcsDocuments)
               .build();
 
       String fullGcsPath = String.format("gs://%s/%s/", gcsOutputBucketName, gcsOutputUriPrefix);
-      BatchProcessRequest.BatchOutputConfig outputConfig =
-          BatchProcessRequest.BatchOutputConfig.newBuilder().setGcsDestination(fullGcsPath).build();
+      GcsOutputConfig gcsOutputConfig = GcsOutputConfig.newBuilder()
+              .setGcsUri(fullGcsPath)
+              .build();
+      
+      DocumentOutputConfig documentOutputConfig = DocumentOutputConfig.newBuilder()
+              .setGcsOutputConfig(gcsOutputConfig)
+              .build();
 
       // Configure the batch process request.
       BatchProcessRequest request =
           BatchProcessRequest.newBuilder()
               .setName(name)
-              .addInputConfigs(batchInputConfig)
-              .setOutputConfig(outputConfig)
+              .setInputDocuments(inputConfig)
+              .setDocumentOutputConfig(documentOutputConfig)
               .build();
-
+      
       OperationFuture<BatchProcessResponse, BatchProcessMetadata> future =
           client.batchProcessDocumentsAsync(request);
 

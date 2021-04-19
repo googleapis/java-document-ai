@@ -68,10 +68,10 @@ public class ProcessDocument {
               .build();
 
       // Configure the process request.
-      com.google.cloud.documentai.v1.ProcessRequest request = com.google.cloud.documentai.v1.ProcessRequest.newBuilder()
-              .setName(name)
-              .setRawDocument(document)
-              .build();
+      ProcessRequest request = ProcessRequest.newBuilder()
+                .setName(name)
+                .setRawDocument(document)
+                .build();
 
       // Recognizes text entities in the PDF document
       ProcessResponse result = client.processDocument(request);

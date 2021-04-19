@@ -39,7 +39,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-public class BatchProcessDocumentBeta {
+public class BatchProcessDocument {
   public static void batchProcessDocument()
       throws IOException, InterruptedException, TimeoutException, ExecutionException {
     // TODO(developer): Replace these variables before running the sample.

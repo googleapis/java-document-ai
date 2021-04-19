@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package documentai.v1beta3;
+package documentai.v1;
 
+import documentai.v1.ProcessDocument;
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertNotNull;
 
@@ -61,7 +62,7 @@ public class ProcessDocumentTest {
   public void testProcessDocument()
       throws InterruptedException, ExecutionException, IOException, TimeoutException {
     // parse the GCS invoice as a form.
-    ProcessDocumentBeta.processDocument(PROJECT_ID, "us", PROCESSOR_ID, FILE_PATH);
+    ProcessDocument.processDocument(PROJECT_ID, "us", PROCESSOR_ID, FILE_PATH);
     String got = bout.toString();
 
     assertThat(got).contains("Paragraph text:");

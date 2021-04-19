@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
-package documentai.v1beta3;
+package documentai.v1;
 
 // [START documentai_process_document]
 
-import com.google.cloud.documentai.v1beta3.Document;
-import com.google.cloud.documentai.v1beta3.DocumentProcessorServiceClient;
-import com.google.cloud.documentai.v1beta3.ProcessRequest;
-import com.google.cloud.documentai.v1beta3.ProcessResponse;
+import com.google.cloud.documentai.v1.RawDocument;
+import com.google.cloud.documentai.v1.Document;
+import com.google.cloud.documentai.v1.DocumentProcessorServiceClient;
+import com.google.cloud.documentai.v1.ProcessRequest;
+import com.google.cloud.documentai.v1.ProcessResponse;
 import com.google.protobuf.ByteString;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -30,7 +31,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
-public class ProcessDocumentBeta {
+public class ProcessDocument {
   public static void processDocument()
       throws IOException, InterruptedException, ExecutionException, TimeoutException {
     // TODO(developer): Replace these variables before running the sample.
@@ -60,12 +61,16 @@ public class ProcessDocumentBeta {
       // Convert the image data to a Buffer and base64 encode it.
       ByteString content = ByteString.copyFrom(imageFileData);
 
-      Document document =
-          Document.newBuilder().setContent(content).setMimeType("application/pdf").build();
+      RawDocument document = RawDocument.newBuilder()
+              .setContent(content)
+              .setMimeType("application/pdf")
+              .build();
 
       // Configure the process request.
-      ProcessRequest request =
-          ProcessRequest.newBuilder().setName(name).setDocument(document).build();
+      com.google.cloud.documentai.v1.ProcessRequest request = com.google.cloud.documentai.v1.ProcessRequest.newBuilder()
+              .setName(name)
+              .setRawDocument(document)
+              .build();
 
       // Recognizes text entities in the PDF document
       ProcessResponse result = client.processDocument(request);

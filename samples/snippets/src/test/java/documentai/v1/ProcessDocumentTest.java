@@ -19,8 +19,6 @@ package documentai.v1;
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertNotNull;
 
-
-import documentai.v1.ProcessDocument;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;

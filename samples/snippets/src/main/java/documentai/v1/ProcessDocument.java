@@ -18,7 +18,6 @@ package documentai.v1;
 
 // [START documentai_process_document]
 
-
 import com.google.cloud.documentai.v1.Document;
 import com.google.cloud.documentai.v1.DocumentProcessorServiceClient;
 import com.google.cloud.documentai.v1.ProcessRequest;
@@ -62,16 +61,12 @@ public class ProcessDocument {
       // Convert the image data to a Buffer and base64 encode it.
       ByteString content = ByteString.copyFrom(imageFileData);
 
-      RawDocument document = RawDocument.newBuilder()
-              .setContent(content)
-              .setMimeType("application/pdf")
-              .build();
+      RawDocument document =
+          RawDocument.newBuilder().setContent(content).setMimeType("application/pdf").build();
 
       // Configure the process request.
-      ProcessRequest request = ProcessRequest.newBuilder()
-                .setName(name)
-                .setRawDocument(document)
-                .build();
+      ProcessRequest request =
+          ProcessRequest.newBuilder().setName(name).setRawDocument(document).build();
 
       // Recognizes text entities in the PDF document
       ProcessResponse result = client.processDocument(request);

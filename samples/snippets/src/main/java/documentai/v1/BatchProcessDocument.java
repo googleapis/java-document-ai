@@ -76,27 +76,19 @@ public class BatchProcessDocument {
       String name =
           String.format("projects/%s/locations/%s/processors/%s", projectId, location, processorId);
 
-      GcsDocument gcsDocument = GcsDocument.newBuilder()
-              .setGcsUri(gcsInputUri)
-              .setMimeType("application/pdf")
-              .build();
-      
-      GcsDocuments gcsDocuments = GcsDocuments.newBuilder()
-              .addDocuments(gcsDocument)
-              .build();
-      
-      BatchDocumentsInputConfig inputConfig = BatchDocumentsInputConfig.newBuilder()
-              .setGcsDocuments(gcsDocuments)
-              .build();
+      GcsDocument gcsDocument =
+          GcsDocument.newBuilder().setGcsUri(gcsInputUri).setMimeType("application/pdf").build();
+
+      GcsDocuments gcsDocuments = GcsDocuments.newBuilder().addDocuments(gcsDocument).build();
+
+      BatchDocumentsInputConfig inputConfig =
+          BatchDocumentsInputConfig.newBuilder().setGcsDocuments(gcsDocuments).build();
 
       String fullGcsPath = String.format("gs://%s/%s/", gcsOutputBucketName, gcsOutputUriPrefix);
-      GcsOutputConfig gcsOutputConfig = GcsOutputConfig.newBuilder()
-              .setGcsUri(fullGcsPath)
-              .build();
-      
-      DocumentOutputConfig documentOutputConfig = DocumentOutputConfig.newBuilder()
-              .setGcsOutputConfig(gcsOutputConfig)
-              .build();
+      GcsOutputConfig gcsOutputConfig = GcsOutputConfig.newBuilder().setGcsUri(fullGcsPath).build();
+
+      DocumentOutputConfig documentOutputConfig =
+          DocumentOutputConfig.newBuilder().setGcsOutputConfig(gcsOutputConfig).build();
 
       // Configure the batch process request.
       BatchProcessRequest request =
@@ -105,7 +97,7 @@ public class BatchProcessDocument {
               .setInputDocuments(inputConfig)
               .setDocumentOutputConfig(documentOutputConfig)
               .build();
-      
+
       OperationFuture<BatchProcessResponse, BatchProcessMetadata> future =
           client.batchProcessDocumentsAsync(request);
 

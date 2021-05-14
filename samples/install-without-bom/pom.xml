@@ -29,13 +29,13 @@
     <dependency>
       <groupId>com.google.cloud</groupId>
       <artifactId>google-cloud-document-ai</artifactId>
-      <version>0.8.0</version>
+      <version>0.8.2</version>
     </dependency>
       <!-- [END documentai_install_without_bom] -->
     <dependency>
       <groupId>com.google.cloud</groupId>
       <artifactId>google-cloud-storage</artifactId>
-      <version>1.113.16</version>
+      <version>1.114.0</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

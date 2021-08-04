@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://www.github.com/googleapis/java-document-ai/compare/v1.2.1...v1.3.0) (2021-08-04)
+
+
+### Features
+
+* configure initial sp version ([#570](https://www.github.com/googleapis/java-document-ai/issues/570)) ([8859280](https://www.github.com/googleapis/java-document-ai/commit/8859280a941f385445007c634a2f6aa793c3a2b1))
+
 ### [1.2.1](https://www.github.com/googleapis/java-document-ai/compare/v1.2.0...v1.2.1) (2021-07-14)
 
 

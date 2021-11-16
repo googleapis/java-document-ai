@@ -13,6 +13,5 @@
     "api_id": "documentai.googleapis.com",
     "transport": "grpc",
     "requires_billing": true,
-    "library_type": "GAPIC_AUTO",
-    "codeowner_team": "@googleapis/cdpe-cloudai"
+    "library_type": "GAPIC_AUTO"
 }

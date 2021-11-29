@@ -48,21 +48,24 @@ public final class GeometryProto {
 
   static {
     java.lang.String[] descriptorData = {
-      "\n.google/cloud/documentai/v1beta2/geomet"
-          + "ry.proto\022\037google.cloud.documentai.v1beta"
-          + "2\032\034google/api/annotations.proto\"\036\n\006Verte"
-          + "x\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"(\n\020NormalizedVer"
-          + "tex\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\"\231\001\n\014BoundingPo"
-          + "ly\0229\n\010vertices\030\001 \003(\0132\'.google.cloud.docu"
-          + "mentai.v1beta2.Vertex\022N\n\023normalized_vert"
-          + "ices\030\002 \003(\01321.google.cloud.documentai.v1b"
-          + "eta2.NormalizedVertexB\352\001\n#com.google.clo"
-          + "ud.documentai.v1beta2B\rGeometryProtoP\001ZI"
-          + "google.golang.org/genproto/googleapis/cl"
+      "\n"
+          + ".google/cloud/documentai/v1beta2/geomet"
+          + "ry.proto\022\037google.cloud.documentai.v1beta2\032\034google/api/annotations.proto\"\036\n"
+          + "\006Vertex\022\t\n"
+          + "\001x\030\001 \001(\005\022\t\n"
+          + "\001y\030\002 \001(\005\"(\n"
+          + "\020NormalizedVertex\022\t\n"
+          + "\001x\030\001 \001(\002\022\t\n"
+          + "\001y\030\002 \001(\002\"\231\001\n"
+          + "\014BoundingPoly\0229\n"
+          + "\010vertices\030\001 \003(\0132\'.google.cloud.documentai.v1beta2.Vertex\022N\n"
+          + "\023normalized_vertices\030\002"
+          + " \003(\01321.google.cloud.documentai.v1beta2.NormalizedVertexB\352\001\n"
+          + "#com.google.cloud.documentai.v1beta2B\r"
+          + "GeometryProtoP\001ZIgoogle.golang.org/genproto/googleapis/cl"
           + "oud/documentai/v1beta2;documentai\252\002\037Goog"
           + "le.Cloud.DocumentAI.V1Beta2\312\002\037Google\\Clo"
-          + "ud\\DocumentAI\\V1beta2\352\002\"Google::Cloud::D"
-          + "ocumentAI::V1beta2b\006proto3"
+          + "ud\\DocumentAI\\V1beta2\352\002\"Google::Cloud::DocumentAI::V1beta2b\006proto3"
     };
     descriptor =
         com.google.protobuf.Descriptors.FileDescriptor.internalBuildGeneratedFileFrom(

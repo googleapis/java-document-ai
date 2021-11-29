@@ -101,8 +101,7 @@ public final class DocumentAiProto {
   static {
     java.lang.String[] descriptorData = {
       "\n"
-          + "<google/cloud/documentai/v1beta2/document_understanding.proto\022\037google.cloud.doc"
-          + "umentai.v1beta2\032\034google/api/annotations.proto\032\027google/api/client.proto\032\037google/api/field_behavior.proto\032.google/cloud/documentai/v1beta2/document.proto\032.google/cloud/documentai/v1beta2/geometry.proto\032#google/longrunning/operations.proto\032\037google/protobuf/timestamp.proto\"~\n"
+          + "<google/cloud/documentai/v1beta2/document_understanding.proto\022\037google.cloud.documentai.v1beta2\032\034google/api/annotations.proto\032\027google/api/client.proto\032\037google/api/field_behavior.proto\032.google/cloud/documentai/v1beta2/document.proto\032.google/cloud/documentai/v1beta2/geometry.proto\032#google/longrunning/operations.proto\032\037google/protobuf/timestamp.proto\"~\n"
           + "\034BatchProcessDocumentsRequest\022N\n"
           + "\010requests\030\001"
           + " \003(\01327.google.cloud.documentai.v1beta2.ProcessDocumentRequestB\003\340A\002\022\016\n"
@@ -186,8 +185,7 @@ public final class DocumentAiProto {
           + "\034DocumentUnderstandingService\022\274\002\n"
           + "\025BatchProcessDocuments\022=.google.cloud.documentai.v1beta2.BatchProcessDocumentsRequest\032\035.google.longrunning.Operation\"\304\001\202\323\344\223\002~\"?/v1beta2/{parent=projects/*/locations/*}/documents:batchProcess:\001*Z8\"3/v1beta2/{parent=projects/*}/documents:batchProcess:\001*\332A\010requests\312A2\n"
           + "\035BatchProcessDocumentsResponse\022\021OperationMetadata\022\361\001\n"
-          + "\017ProcessDocument\0227.google.cloud.documentai.v1beta2.ProcessDocumentReq"
-          + "uest\032).google.cloud.documentai.v1beta2.Document\"z\202\323\344\223\002t\":/v1beta2/{parent=projects/*/locations/*}/documents:process:\001*Z3\"./v1beta2/{parent=projects/*}/documents:process:\001*\032M\312A\031documentai.googleapis.com\322A.https://www.googleapis.com/auth/cloud-platformB\354\001\n"
+          + "\017ProcessDocument\0227.google.cloud.documentai.v1beta2.ProcessDocumentRequest\032).google.cloud.documentai.v1beta2.Document\"z\202\323\344\223\002t\":/v1beta2/{parent=projects/*/locations/*}/documents:process:\001*Z3\"./v1beta2/{parent=projects/*}/documents:process:\001*\032M\312A\031documentai.googleapis.com\322A.https://www.googleapis.com/auth/cloud-platformB\354\001\n"
           + "#com.google.cloud.documentai.v1beta2B\017DocumentAiProtoP\001ZIgoogle.go"
           + "lang.org/genproto/googleapis/cloud/docum"
           + "entai/v1beta2;documentai\252\002\037Google.Cloud."

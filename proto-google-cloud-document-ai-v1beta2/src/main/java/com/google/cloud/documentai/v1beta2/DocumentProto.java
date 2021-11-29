@@ -138,8 +138,7 @@ public final class DocumentProto {
     java.lang.String[] descriptorData = {
       "\n"
           + ".google/cloud/documentai/v1beta2/document.proto\022\037google.cloud.documentai.v1beta"
-          + "2\032\037google/api/field_behavior.proto\032.goog"
-          + "le/cloud/documentai/v1beta2/geometry.proto\032\027google/rpc/status.proto\032\027google/type/color.proto\032\034google/api/annotations.proto\"\302+\n"
+          + "2\032\037google/api/field_behavior.proto\032.google/cloud/documentai/v1beta2/geometry.proto\032\027google/rpc/status.proto\032\027google/type/color.proto\032\034google/api/annotations.proto\"\302+\n"
           + "\010Document\022\r\n"
           + "\003uri\030\001 \001(\tH\000\022\021\n"
           + "\007content\030\002 \001(\014H\000\022\021\n"

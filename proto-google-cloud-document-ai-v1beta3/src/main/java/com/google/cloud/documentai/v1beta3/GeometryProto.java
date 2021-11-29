@@ -49,8 +49,7 @@ public final class GeometryProto {
   static {
     java.lang.String[] descriptorData = {
       "\n"
-          + ".google/cloud/documentai/v1beta3/geomet"
-          + "ry.proto\022\037google.cloud.documentai.v1beta3\032\034google/api/annotations.proto\"\036\n"
+          + ".google/cloud/documentai/v1beta3/geometry.proto\022\037google.cloud.documentai.v1beta3\032\034google/api/annotations.proto\"\036\n"
           + "\006Vertex\022\t\n"
           + "\001x\030\001 \001(\005\022\t\n"
           + "\001y\030\002 \001(\005\"(\n"

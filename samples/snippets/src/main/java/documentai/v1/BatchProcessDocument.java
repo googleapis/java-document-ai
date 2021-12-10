@@ -40,7 +40,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -55,11 +54,6 @@ public class BatchProcessDocument {
     String outputGcsBucketName = "your-gcs-bucket-name";
     String outputGcsPrefix = "PREFIX";
     String inputGcsUri = "gs://your-gcs-bucket/path/to/input/file.pdf";
-
-    Map<String, String> env = System.getenv();
-
-    // Java 8
-    env.forEach((k, v) -> System.out.println(k + ":" + v));
 
     batchProcessDocument(
         projectId, location, processerId, inputGcsUri, outputGcsBucketName, outputGcsPrefix);

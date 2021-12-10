@@ -40,6 +40,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -57,7 +58,7 @@ public class BatchProcessDocument {
 
     Map<String, String> env = System.getenv();
 
-      // Java 8
+    // Java 8
     env.forEach((k, v) -> System.out.println(k + ":" + v));
 
     batchProcessDocument(

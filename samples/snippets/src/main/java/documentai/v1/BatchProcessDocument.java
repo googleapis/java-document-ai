@@ -54,7 +54,6 @@ public class BatchProcessDocument {
     String outputGcsBucketName = "your-gcs-bucket-name";
     String outputGcsPrefix = "PREFIX";
     String inputGcsUri = "gs://your-gcs-bucket/path/to/input/file.pdf";
-
     batchProcessDocument(
         projectId, location, processerId, inputGcsUri, outputGcsBucketName, outputGcsPrefix);
   }

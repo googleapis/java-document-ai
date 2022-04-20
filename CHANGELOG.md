@@ -1,5 +1,39 @@
 # Changelog
 
+### [2.4.3](https://github.com/googleapis/java-document-ai/compare/v2.4.2...v2.4.3) (2022-04-18)
+
+
+### Dependencies
+
+* update dependency com.google.cloud:google-cloud-storage to v2.6.1 ([#809](https://github.com/googleapis/java-document-ai/issues/809)) ([30525d7](https://github.com/googleapis/java-document-ai/commit/30525d709a51b6ec78ae58d54aa1cc289538f41d))
+
+### [2.4.2](https://github.com/googleapis/java-document-ai/compare/v2.4.1...v2.4.2) (2022-04-15)
+
+
+### Dependencies
+
+* update dependency com.google.cloud:google-cloud-shared-dependencies to v2.10.0 ([#805](https://github.com/googleapis/java-document-ai/issues/805)) ([7496b00](https://github.com/googleapis/java-document-ai/commit/7496b002917e4566f1fe638071f4d521ea067288))
+
+### [2.4.1](https://github.com/googleapis/java-document-ai/compare/v2.4.0...v2.4.1) (2022-04-01)
+
+
+### Dependencies
+
+* update dependency com.google.cloud:google-cloud-storage to v2.6.0 ([#797](https://github.com/googleapis/java-document-ai/issues/797)) ([0e9075d](https://github.com/googleapis/java-document-ai/commit/0e9075db567c47e8109b9fe4b435e2db6212cda2))
+
+## [2.4.0](https://github.com/googleapis/java-document-ai/compare/v2.3.1...v2.4.0) (2022-03-29)
+
+
+### Features
+
+* add `content` field in TextAnchor ([#787](https://github.com/googleapis/java-document-ai/issues/787)) ([a0b46b5](https://github.com/googleapis/java-document-ai/commit/a0b46b5b81e45fe7908e3f8487582e85fddb3dab))
+
+
+### Dependencies
+
+* update dependency com.google.cloud:google-cloud-shared-dependencies to v2.9.0 ([#794](https://github.com/googleapis/java-document-ai/issues/794)) ([7388098](https://github.com/googleapis/java-document-ai/commit/7388098207f7be76fff2bc9c2900e57eb65e7dfb))
+* update dependency com.google.cloud:google-cloud-storage to v2.5.1 ([#792](https://github.com/googleapis/java-document-ai/issues/792)) ([8b1c13a](https://github.com/googleapis/java-document-ai/commit/8b1c13a091276a8e095006de66697c1532a9f4c5))
+
 ### [2.3.1](https://github.com/googleapis/java-document-ai/compare/v2.3.0...v2.3.1) (2022-03-09)
 
 

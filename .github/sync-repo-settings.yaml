@@ -8,7 +8,6 @@ branchProtectionRules:
     requiresCodeOwnerReviews: true
     requiresStrictStatusChecks: false
     requiredStatusCheckContexts:
-      - dependencies (8)
       - dependencies (11)
       - lint
       - units (8)
@@ -24,7 +23,6 @@ branchProtectionRules:
     requiresCodeOwnerReviews: true
     requiresStrictStatusChecks: false
     requiredStatusCheckContexts:
-      - dependencies (8)
       - dependencies (11)
       - lint
       - units (7)

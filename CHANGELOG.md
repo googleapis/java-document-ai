@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.7.5](https://github.com/googleapis/java-document-ai/compare/v2.7.4...v2.7.5) (2022-10-07)
+
+
+### Dependencies
+
+* Update dependency com.google.cloud:google-cloud-storage to v2.13.0 ([#914](https://github.com/googleapis/java-document-ai/issues/914)) ([0d654e3](https://github.com/googleapis/java-document-ai/commit/0d654e3ec9cbf76f1a220c1633a2c88482a79b3a))
+
 ## [2.7.4](https://github.com/googleapis/java-document-ai/compare/v2.7.3...v2.7.4) (2022-10-05)
 
 

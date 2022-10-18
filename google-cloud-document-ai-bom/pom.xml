@@ -85,7 +85,7 @@
       <dependency>
         <groupId>com.google.api.grpc</groupId>
         <artifactId>proto-google-cloud-document-ai-v1beta3</artifactId>
-        <version>0.20.0</version><!-- {x-version-update:proto-google-cloud-document-ai-v1beta3:current} -->
+        <version>0.19.6-SNAPSHOT</version><!-- {x-version-update:proto-google-cloud-document-ai-v1beta3:current} -->
       </dependency>
       <dependency>
         <groupId>com.google.api.grpc</groupId>

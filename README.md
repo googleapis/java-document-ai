@@ -108,22 +108,6 @@ use this Document AI Client Library.
 
 
 
-## Samples
-
-Samples are in the [`samples/`](https://github.com/googleapis/java-document-ai/tree/main/samples) directory.
-
-| Sample                      | Source Code                       | Try it |
-| --------------------------- | --------------------------------- | ------ |
-| Batch Process Document | [source code](https://github.com/googleapis/java-document-ai/blob/main/samples/snippets/src/main/java/documentai/v1/BatchProcessDocument.java) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/java-document-ai&page=editor&open_in_editor=samples/snippets/src/main/java/documentai/v1/BatchProcessDocument.java) |
-| Process Document | [source code](https://github.com/googleapis/java-document-ai/blob/main/samples/snippets/src/main/java/documentai/v1/ProcessDocument.java) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/java-document-ai&page=editor&open_in_editor=samples/snippets/src/main/java/documentai/v1/ProcessDocument.java) |
-| Quick Start | [source code](https://github.com/googleapis/java-document-ai/blob/main/samples/snippets/src/main/java/documentai/v1/QuickStart.java) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/java-document-ai&page=editor&open_in_editor=samples/snippets/src/main/java/documentai/v1/QuickStart.java) |
-| Process Form Document | [source code](https://github.com/googleapis/java-document-ai/blob/main/samples/snippets/src/main/java/documentai/v1beta3/ProcessFormDocument.java) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/java-document-ai&page=editor&open_in_editor=samples/snippets/src/main/java/documentai/v1beta3/ProcessFormDocument.java) |
-| Process Ocr Document | [source code](https://github.com/googleapis/java-document-ai/blob/main/samples/snippets/src/main/java/documentai/v1beta3/ProcessOcrDocument.java) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/java-document-ai&page=editor&open_in_editor=samples/snippets/src/main/java/documentai/v1beta3/ProcessOcrDocument.java) |
-| Process Quality Document | [source code](https://github.com/googleapis/java-document-ai/blob/main/samples/snippets/src/main/java/documentai/v1beta3/ProcessQualityDocument.java) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/java-document-ai&page=editor&open_in_editor=samples/snippets/src/main/java/documentai/v1beta3/ProcessQualityDocument.java) |
-| Process Specialized Document | [source code](https://github.com/googleapis/java-document-ai/blob/main/samples/snippets/src/main/java/documentai/v1beta3/ProcessSpecializedDocument.java) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/java-document-ai&page=editor&open_in_editor=samples/snippets/src/main/java/documentai/v1beta3/ProcessSpecializedDocument.java) |
-| Process Splitter Document | [source code](https://github.com/googleapis/java-document-ai/blob/main/samples/snippets/src/main/java/documentai/v1beta3/ProcessSplitterDocument.java) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/java-document-ai&page=editor&open_in_editor=samples/snippets/src/main/java/documentai/v1beta3/ProcessSplitterDocument.java) |
-
-
 
 ## Troubleshooting
 

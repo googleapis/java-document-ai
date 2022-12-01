@@ -9,6 +9,13 @@ Java idiomatic client for [Document AI][product-docs].
 - [Client Library Documentation][javadocs]
 
 
+:bus: In October 2022, this library has moved to
+[google-cloud-java/java-document-ai](
+https://github.com/googleapis/google-cloud-java/tree/main/java-document-ai).
+This repository will be archived in the future.
+Future releases will appear in the new repository (https://github.com/googleapis/google-cloud-java/releases).
+The Maven artifact coordinates (`com.google.cloud:google-cloud-document-ai`) remain the same.
+
 ## Quickstart
 
 If you are using Maven with [BOM][libraries-bom], add this to your pom.xml file:
@@ -50,20 +57,20 @@ If you are using Maven without BOM, add this to your dependencies:
 If you are using Gradle 5.x or later, add this to your dependencies:
 
 ```Groovy
-implementation platform('com.google.cloud:libraries-bom:26.1.3')
+implementation platform('com.google.cloud:libraries-bom:26.1.4')
 
 implementation 'com.google.cloud:google-cloud-document-ai'
 ```
 If you are using Gradle without BOM, add this to your dependencies:
 
 ```Groovy
-implementation 'com.google.cloud:google-cloud-document-ai:2.8.0'
+implementation 'com.google.cloud:google-cloud-document-ai:2.10.0'
 ```
 
 If you are using SBT, add this to your dependencies:
 
 ```Scala
-libraryDependencies += "com.google.cloud" % "google-cloud-document-ai" % "2.8.0"
+libraryDependencies += "com.google.cloud" % "google-cloud-document-ai" % "2.10.0"
 ```
 
 ## Authentication
@@ -99,22 +106,6 @@ use this Document AI Client Library.
 
 
 
-
-
-## Samples
-
-Samples are in the [`samples/`](https://github.com/googleapis/java-document-ai/tree/main/samples) directory.
-
-| Sample                      | Source Code                       | Try it |
-| --------------------------- | --------------------------------- | ------ |
-| Batch Process Document | [source code](https://github.com/googleapis/java-document-ai/blob/main/samples/snippets/src/main/java/documentai/v1/BatchProcessDocument.java) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/java-document-ai&page=editor&open_in_editor=samples/snippets/src/main/java/documentai/v1/BatchProcessDocument.java) |
-| Process Document | [source code](https://github.com/googleapis/java-document-ai/blob/main/samples/snippets/src/main/java/documentai/v1/ProcessDocument.java) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/java-document-ai&page=editor&open_in_editor=samples/snippets/src/main/java/documentai/v1/ProcessDocument.java) |
-| Quick Start | [source code](https://github.com/googleapis/java-document-ai/blob/main/samples/snippets/src/main/java/documentai/v1/QuickStart.java) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/java-document-ai&page=editor&open_in_editor=samples/snippets/src/main/java/documentai/v1/QuickStart.java) |
-| Process Form Document | [source code](https://github.com/googleapis/java-document-ai/blob/main/samples/snippets/src/main/java/documentai/v1beta3/ProcessFormDocument.java) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/java-document-ai&page=editor&open_in_editor=samples/snippets/src/main/java/documentai/v1beta3/ProcessFormDocument.java) |
-| Process Ocr Document | [source code](https://github.com/googleapis/java-document-ai/blob/main/samples/snippets/src/main/java/documentai/v1beta3/ProcessOcrDocument.java) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/java-document-ai&page=editor&open_in_editor=samples/snippets/src/main/java/documentai/v1beta3/ProcessOcrDocument.java) |
-| Process Quality Document | [source code](https://github.com/googleapis/java-document-ai/blob/main/samples/snippets/src/main/java/documentai/v1beta3/ProcessQualityDocument.java) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/java-document-ai&page=editor&open_in_editor=samples/snippets/src/main/java/documentai/v1beta3/ProcessQualityDocument.java) |
-| Process Specialized Document | [source code](https://github.com/googleapis/java-document-ai/blob/main/samples/snippets/src/main/java/documentai/v1beta3/ProcessSpecializedDocument.java) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/java-document-ai&page=editor&open_in_editor=samples/snippets/src/main/java/documentai/v1beta3/ProcessSpecializedDocument.java) |
-| Process Splitter Document | [source code](https://github.com/googleapis/java-document-ai/blob/main/samples/snippets/src/main/java/documentai/v1beta3/ProcessSplitterDocument.java) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/java-document-ai&page=editor&open_in_editor=samples/snippets/src/main/java/documentai/v1beta3/ProcessSplitterDocument.java) |
 
 
 
